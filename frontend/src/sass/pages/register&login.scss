@@ -1,0 +1,26 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5rem;
+
+  font-weight: 700;
+
+  & form {
+    padding: 2.5rem 3rem;
+
+    & .btn {
+      background-color: #fa9c23;
+      border-color: #fa9c23;
+      color: white;
+      margin-top: 2.5rem;
+    }
+
+    & a {
+      font-size: 0.9rem;
+      color: grey;
+    }
+
+  }
+}
+

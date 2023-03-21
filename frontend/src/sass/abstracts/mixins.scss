@@ -1,0 +1,6 @@
+@use './variables';
+
+@mixin j(){
+    padding: 4px;
+    color: variables.$c;
+}

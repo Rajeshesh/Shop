@@ -1,0 +1,31 @@
+/* Home page */
+
+.card {
+    height: 100%;
+
+    &__img {
+        width: 200px;
+        height: 150px;
+        object-fit: contain;
+    }
+
+    &__body {
+        padding-left: 0;
+
+    }
+
+    &__title a {
+        color: #2e2e2e;
+
+        &:hover {
+            color: #fa9c23;
+            text-decoration: none;
+        }
+    }
+
+    &__text {
+        font-size: 1.4rem;
+    }
+
+    
+}

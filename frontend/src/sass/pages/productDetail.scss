@@ -1,0 +1,63 @@
+/* Product Details Page */
+#product_image {
+    margin-top: 9rem;
+}
+
+.review_user {
+    font-size: 0.8rem;
+    color: grey;
+}
+
+#product_id {
+    color: grey;
+    font-size: 0.8rem;
+}
+
+#product_price {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.stockCounter input {
+    border: none;
+    width: 3rem;
+    text-align: center;
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+}
+
+/* Reviews */
+.rating {
+    margin-top: 10rem;
+}
+
+.stars {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    padding-left: 0;
+}
+
+.star {
+    display: inline;
+    list-style: none;
+    font-size: 3rem;
+    padding-left: 0.9rem;
+    color: #e3e3e3;
+}
+
+.star:first-child {
+    padding-left: 0;
+}
+
+.orange {
+    color: #fa9c23;
+}
+
+.yellow {
+    color: #fdcc0d;
+}

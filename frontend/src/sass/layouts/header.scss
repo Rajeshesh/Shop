@@ -1,0 +1,32 @@
+#cart_count {
+    background-color: #febd69;
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.2rem;
+    color: black;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+#cart {
+    font-size: 1rem;
+    color: white;
+}
+
+/* Avatar */
+.avatar {
+    display: inline-block;
+    margin-bottom: 0;
+    height: 3rem;
+    width: 3rem;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+}
+
+/* Header User Profile */
+
+.avatar-nav {
+    margin-right: 0.6rem;
+    height: 2.2rem;
+    width: 2.2rem;
+}

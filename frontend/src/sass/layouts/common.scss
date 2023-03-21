@@ -1,0 +1,125 @@
+#products_heading {
+    margin-top: 1.8rem;
+}
+
+#card_item_price {
+    color: #febd69;
+    font-weight: bold;
+    font-size: 1.4rem;
+}
+
+.card-font-size {
+    font-size: 1.5rem;
+}
+
+#delete_cart_item {
+    color: red;
+    background: white;
+    padding: 0.3rem 0.5rem;
+    font-size: 1.1rem;
+    border: none;
+}
+
+/* Loader */
+.loader {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20%;
+    width: 80px;
+    height: 80px;
+    padding-left: 0;
+
+    &:after {
+        content: ' ';
+        display: block;
+        width: 64px;
+        height: 64px;
+        margin: 8px;
+        border-radius: 50%;
+        border: 6px solid #fa9c23;
+        border-color: #fa9c23 transparent;
+        animation: lds-dual-ring 1.2s linear infinite;
+    }
+}
+
+@keyframes lds-dual-ring {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Ratings */
+.ratings {
+    font-size: 1.2rem;
+    color: #fdcc0d;
+
+    &__outer {
+
+        display: inline-block;
+        position: relative;
+        font-family: FontAwesome;
+        color: #fdcc0d;
+
+        &::before {
+            content: '\f006 \f006 \f006 \f006 \f006';
+        }
+
+    }
+
+    &__inner {
+        position: absolute;
+        top: 0;
+        left: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        width: 0;
+
+        &::before {
+            content: '\f005 \f005 \f005 \f005 \f005';
+            color: #f8ce0b;
+        }
+    }
+
+    & #noOfReviews {
+        font-size: 0.85rem;
+        color: grey;
+        margin-left: 0.5rem;
+    }
+}
+
+.form-control:disabled,
+.form-control[readonly] {
+    background-color: white;
+}
+
+#stock_status {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-left: 0.3rem;
+}
+
+#product_seller {
+    color: grey;
+    font-size: 0.9rem;
+}
+
+#checkout_btn,
+.review-btn {
+    background-color: #fa9c23;
+    border-color: #fa9c23;
+    margin-top: 2rem;
+    border-radius: 5rem;
+}
+
+#cart_btn,
+#review_btn {
+    border-radius: 2rem;
+    background-color: #fa9c23;
+    border: none;
+    padding: 0.5rem 2rem;
+}
