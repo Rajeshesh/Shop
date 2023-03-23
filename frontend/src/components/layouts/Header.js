@@ -6,6 +6,8 @@ import { logout } from '../../actions/userActions';
 import { AppBar, Avatar, Badge, Menu, MenuItem, Typography } from '@mui/material';
 import { ShoppingCart } from '@mui/icons-material';
 import { Box } from '@mui/system';
+import { Button } from '@mui/material';
+import Switch from '@mui/material/Switch';
 
 export default function Header() {
   const { isAuthenticated, user } = useSelector(state => state.authState);
@@ -23,7 +25,7 @@ export default function Header() {
       <Box sx={{
         display: 'flex',
         justifyContent: 'space-between',
-        alignItems:'center',
+        alignItems: 'center',
         padding: '0.3% 1.5%'
       }} >
         <Link to="/" style={{ textDecoration: 'none' }}>
@@ -33,6 +35,8 @@ export default function Header() {
         <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
           <Search />
         </Box>
+
+
 
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           {isAuthenticated ? (
@@ -50,6 +54,7 @@ export default function Header() {
                   vertical: " 50",
                   horizontal: 'right'
                 }}>
+                <MenuItem ><Switch /></MenuItem>
                 {user.role === "admin" && <MenuItem onClick={() => navigate('/admin/dashboard')}  >Dashboard</MenuItem>}
                 <MenuItem onClick={() => navigate('/myprofile')}>Profile</MenuItem>
                 <MenuItem onClick={() => navigate('/orders')}>Orders</MenuItem>
@@ -64,7 +69,7 @@ export default function Header() {
           </Link>
         </div>
       </Box>
-      <Box sx={{ display: { xs: 'flex', sm: 'none' }, justifyContent: 'center', paddingLeft: '8%',paddingBottom:'1%' }}>
+      <Box sx={{ display: { xs: 'flex', sm: 'none' }, justifyContent: 'center', paddingLeft: '8%', paddingBottom: '1%' }}>
         <Search />
       </Box>
 

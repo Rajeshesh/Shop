@@ -8,6 +8,7 @@ import { toast } from 'react-toastify';
 import Pagination from 'react-js-pagination';
 import { useParams } from "react-router-dom";
 import RangeSlider from "./Slider";
+import { Box } from "@mui/material";
 
 export default function ProductSearch() {
     const dispatch = useDispatch();
@@ -60,7 +61,7 @@ export default function ProductSearch() {
                     <h1 id="products_heading">Search Products</h1>
                     <section id="products" className="container mt-5">
                         <div className="row">
-                            <div className="col-6 col-md-3 mb-5 mt-5">
+                            <Box sx={{display:{xs:'none',sm:'block'}}} className="col-md-3   mt-15 ">
                                 {/* Price Filter */}
                                 <div className="px-5" onMouseUp={() => setPriceChanged(price)}>
                                     <RangeSlider price={price} setPrice={setPrice} />
@@ -120,14 +121,13 @@ export default function ProductSearch() {
 
                                     </ul>
                                 </div>
-                            </div>
+                            </Box>
                             <div className="col-6 col-md-9">
                                 <div className="row">
                                     {products && products.map(product => (
                                         <Product col={4} key={product._id} product={product} />
                                     ))}
                                 </div>
-
                             </div>
                         </div>
                     </section>
