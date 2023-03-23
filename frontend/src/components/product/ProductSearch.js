@@ -9,6 +9,7 @@ import Pagination from 'react-js-pagination';
 import { useParams } from "react-router-dom";
 import RangeSlider from "./Slider";
 import { Box } from "@mui/material";
+import { Stack } from "@mui/system";
 
 export default function ProductSearch() {
     const dispatch = useDispatch();
@@ -18,6 +19,7 @@ export default function ProductSearch() {
     const [priceChanged, setPriceChanged] = useState(price);
     const [category, setCategory] = useState(null);
     const [rating, setRating] = useState(0);
+    const [filter, setFilter] = useState(false);
 
     const { keyword } = useParams();
     const categories = [
@@ -58,15 +60,20 @@ export default function ProductSearch() {
             {loading ? <Loader /> :
                 <Fragment>
                     <MetaData title={'Buy Best Products'} />
-                    <h1 id="products_heading">Search Products</h1>
-                    <section id="products" className="container mt-5">
-                        <div className="row">
-                            <Box sx={{display:{xs:'none',sm:'block'}}} className="col-md-3   mt-15 ">
+                    <Stack direction="row"
+                        justifyContent="space-between"
+                        alignItems="center">
+                        <Box className="m-5">Search Products</Box>
+                        <Box className="m-5" sx={{ display: { xs: 'block', sm: 'none' } }} onClick={e => setFilter(v => v ? false : true)}>Filter</Box>
+                    </Stack>
+                    <section id="products" >
+                        <Stack direction="row" >
+                            <Box sx={{ display: { xs: filter ? 'block' : 'none', sm: 'block' } }} className="col-md-3   mt-1 ">
                                 {/* Price Filter */}
-                                <div className="px-5" onMouseUp={() => setPriceChanged(price)}>
+                                <div className="p-6" onMouseUp={() => setPriceChanged(price)}>
                                     <RangeSlider price={price} setPrice={setPrice} />
                                 </div>
-                                <hr className="my-5" />
+                                <hr className="mt-2" />
                                 {/* Category Filter */}
                                 <div className="mt-5">
                                     <h3 className="mb-3">Categories</h3>
@@ -89,9 +96,9 @@ export default function ProductSearch() {
 
                                     </ul>
                                 </div>
-                                <hr className="my-5" />
+                                <hr className="mt-2" />
                                 {/* Ratings Filter */}
-                                <div className="mt-5">
+                                <div className="mt-2">
                                     <h4 className="mb-3">Ratings</h4>
                                     <ul className="pl-0">
                                         {[5, 4, 3, 2, 1].map(star =>
@@ -129,7 +136,7 @@ export default function ProductSearch() {
                                     ))}
                                 </div>
                             </div>
-                        </div>
+                        </Stack>
                     </section>
                     {productsCount > 0 && productsCount > resPerPage ?
                         <div className="d-flex justify-content-center mt-5">
