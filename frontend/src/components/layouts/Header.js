@@ -1,58 +1,73 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import Search from './Search';
-import { Dropdown, Image } from 'react-bootstrap';
 import { logout } from '../../actions/userActions';
+import { AppBar, Avatar, Badge, Menu, MenuItem, Typography } from '@mui/material';
+import { ShoppingCart } from '@mui/icons-material';
+import { Box } from '@mui/system';
 
 export default function Header() {
-
   const { isAuthenticated, user } = useSelector(state => state.authState);
   const { items: cartItems } = useSelector(state => state.cartState)
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [open, setOpen] = useState(false)
+
   const logoutHandler = () => {
     dispatch(logout)
   }
+
   return (
-    <nav className="navbar row">
-      <div className="col-12 col-md-3">
-        <div className="navbar-brand">
-          <Link to="/">
-            <img width="150px" alt='JVLcart Logo' src="/images/logo.png" />
+    <AppBar position='sticky' >
+      <Box sx={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems:'center',
+        padding: '0.3% 1.5%'
+      }} >
+        <Link to="/" style={{ textDecoration: 'none' }}>
+          <Typography variant='h4' color='secondary' component='p' >Shop</Typography>
+        </Link>
+
+        <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+          <Search />
+        </Box>
+
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          {isAuthenticated ? (
+            <div>
+              <Avatar onClick={() => setOpen(true)} src={user.avatar ?? './images/default_avatar.png'} />
+              <Menu
+                open={open}
+                onClose={e => setOpen(false)}
+                onClick={() => setOpen(false)}
+                anchorOrigin={{
+                  vertical: "10",
+                  horizontal: 'right'
+                }}
+                transformOrigin={{
+                  vertical: " 50",
+                  horizontal: 'right'
+                }}>
+                {user.role === "admin" && <MenuItem onClick={() => navigate('/admin/dashboard')}  >Dashboard</MenuItem>}
+                <MenuItem onClick={() => navigate('/myprofile')}>Profile</MenuItem>
+                <MenuItem onClick={() => navigate('/orders')}>Orders</MenuItem>
+                <MenuItem onClick={logoutHandler} >Logout</MenuItem>
+              </Menu>
+            </div>
+          ) :
+            <Link className="btn" to={"/login"} id="login_btn">Login</Link>
+          }
+          <Link id="cart" to='/cart' className="ml-3">
+            <Badge badgeContent={cartItems.length}><ShoppingCart /></Badge>
           </Link>
         </div>
-      </div>
-
-      <div className="col-12 col-md-6 mt-2 mt-md-0">
+      </Box>
+      <Box sx={{ display: { xs: 'flex', sm: 'none' }, justifyContent: 'center', paddingLeft: '8%',paddingBottom:'1%' }}>
         <Search />
-      </div>
+      </Box>
 
-      <div className="col-12 col-md-3 mt-4 mt-md-0 text-center">
-        {isAuthenticated ? (
-          <Dropdown className='d-inline' variant="">
-            <Dropdown.Toggle variant="default text-white pr-5" id="dropdown-basic">
-              <figure className='avatar avatar-nav'>
-                <Image width="50px" src={user.avatar ?? './images/default_avatar.png'} roundedCircle />
-              </figure>
-              <span>{user.name}</span>
-            </Dropdown.Toggle>
-
-            <Dropdown.Menu>
-              {user.role === "admin" && <Dropdown.Item onClick={() => navigate('/admin/dashboard')}  >Dashboard</Dropdown.Item>}
-
-              <Dropdown.Item onClick={() => navigate('/myprofile')}  >Profile</Dropdown.Item>
-              <Dropdown.Item onClick={() => navigate('/orders')}  >Orders</Dropdown.Item>
-              <Dropdown.Item onClick={logoutHandler} className='text-danger' >Logout</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-        )
-          :
-          <Link className="btn" to={"/login"} id="login_btn">Login</Link>
-        }
-        <Link id="cart" to='/cart' className="ml-3">Cart</Link>
-        <span className="ml-1" id="cart_count">{cartItems.length}</span>
-      </div>
-    </nav>
+    </AppBar>
   )
 }

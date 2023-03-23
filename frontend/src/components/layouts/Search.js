@@ -1,7 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom'
 
-export default function Search () {
+import { Button } from '@mui/material'
+import { Search as Ser } from '@mui/icons-material'
+
+
+export default function Search() {
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -13,32 +17,30 @@ export default function Search () {
 
     }
 
-    const clearKeyword = () =>{
+    const clearKeyword = () => {
         setKeyword("");
     }
 
     useEffect(() => {
-        if(location.pathname === '/') {
+        if (location.pathname === '/') {
             clearKeyword();
         }
-    },[location])
+    }, [location])
 
     return (
         <form onSubmit={searchHandler}>
             <div className="input-group">
                 <input
-                type="text"
-                id="search_field"
-                className="form-control"
-                placeholder="Enter Product Name ..."
-                onChange={(e)=>{ setKeyword(e.target.value) }}
-                value={keyword}
+                    type="text"
+                    id="search_field"
+                    className="form-control"
+                    placeholder="Enter Product Name ..."
+                    onChange={(e) => { setKeyword(e.target.value) }}
+                    value={keyword}
                 />
-                <div className="input-group-append">
-                <button id="search_btn" className="btn">
-                    <i className="fa fa-search" aria-hidden="true"></i>
-                </button>
-                </div>
+
+                    <Button variant='contained' onClick={searchHandler} color='secondary' disableElevation size='large' startIcon={<Ser />} />
+
             </div>
         </form>
     )
