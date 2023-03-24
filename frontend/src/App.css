@@ -81,17 +81,7 @@ body {
   overflow: auto;
 }
 
-/* User Profile */
 
-.user-info h4 {
-  font-weight: 800;
-  color: grey;
-  margin-top: 2rem;
-}
-
-.user-info p {
-  font-size: 1.1rem;
-}
 
 /* Confirm Order */
 

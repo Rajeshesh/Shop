@@ -32,7 +32,7 @@ export default function Header() {
           <Typography variant='h4' color='secondary' component='p' >Shop</Typography>
         </Link>
 
-        <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+        <Box sx={{ display: { xs: 'none', sm: 'block' }, maxWidth: '700px', flexGrow: 1 }}>
           <Search />
         </Box>
 

@@ -1,0 +1,50 @@
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5rem;
+
+    font-weight: 700;
+
+    & form {
+        padding: 2.5rem 3rem;
+
+        & .btn {
+            background-color: #fa9c23;
+            border-color: #fa9c23;
+            color: white;
+            margin-top: 2.5rem;
+        }
+
+        & a {
+            font-size: 0.9rem;
+            color: grey;
+        }
+
+    }
+}
+
+.profile {
+    margin: 0 auto;
+    padding: 10px;
+    max-width: 500px;
+
+    &>* {
+        text-align: center;
+    }
+
+    & p {
+        font-size: 1.1rem;
+    }
+
+    & h4 {
+        font-weight: 800;
+        color: rgb(70, 53, 53);
+        margin-top: 0.2rem;
+    }
+
+    &__image {
+        display: flex;
+        justify-content: center;
+    }
+}

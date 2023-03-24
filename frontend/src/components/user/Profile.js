@@ -1,44 +1,63 @@
-import { Fragment} from "react";
+import { Fragment } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import MetaData from "../layouts/MetaData";
-
-export  default function Profile(){
-    const {   user } = useSelector(state=>state.authState)
+import { Stack } from "@mui/system";
+import { Avatar, Button } from '@mui/material'
+import { LocalMallOutlined, LockResetOutlined } from '@mui/icons-material'
+export default function Profile() {
+    const { user } = useSelector(state => state.authState)
 
     return (
-        user?(<Fragment>
+        user ? (<Fragment>
             <MetaData title={'My Profile'} />
-            <div className="row justify-content-around mt-5 user-info">
-                <div className="col-12 col-md-3">
-                    <figure className='avatar avatar-profile'>
-                        <img className="rounded-circle img-fluid" src={user.avatar??'./images/default_avatar.png'} alt='' />
-                    </figure>
-                    <Link to="/myprofile/update" id="edit_profile" className="btn btn-primary btn-block my-5">
-                        Edit Profile
-                    </Link>
+            <div className="mt-5 user-info profile">
+                <div className="profile__image">
+                    <Avatar
+                        alt="user image"
+                        src={user.avatar ?? './images/default_avatar.png'}
+                        sx={{ width: 240, height: 240 }}
+                    />
+
                 </div>
-        
-                <div className="col-12 col-md-5">
+
+                <div className="mt-5">
                     <h4>Full Name</h4>
                     <p>{user.name}</p>
-        
+
                     <h4>Email Address</h4>
                     <p>{user.email}</p>
 
                     <h4>Joined On</h4>
                     <p>{String(user.createdAt).substring(0, 10)}</p>
 
-                    <Link to="/orders" className="btn btn-danger btn-block mt-5">
-                        My Orders
-                    </Link>
+                    <Stack
+                        direction="row"
+                        justifyContent="space-evenly"
+                        className={`mb-2`}>
 
-                    <Link to="/myprofile/update/password" className="btn btn-primary btn-block mt-3">
-                        Change Password
+                        <Link to="/myprofile/update" className="mt-8 ">
+                            <Button variant="contained" >
+                                Edit Profile
+                            </Button>
+                        </Link>
+
+                        <Link to="/orders" className="mt-8">
+                            <Button variant="contained" endIcon={<LocalMallOutlined />}>
+                                My Orders
+                            </Button>
+                        </Link>
+
+                    </Stack>
+                    <Link to="/myprofile/update/password" className="mt-8">
+                        <Button variant="outlined" color="secondary" startIcon={<LockResetOutlined />}>
+                            Change Password
+
+                        </Button>
                     </Link>
                 </div>
             </div>
-        </Fragment>):null
+        </Fragment>) : null
     )
 
 }
