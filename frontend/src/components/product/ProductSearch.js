@@ -64,19 +64,17 @@ export default function ProductSearch() {
                         justifyContent="space-between"
                         alignItems="center">
                         <Box className="m-5">Search Products</Box>
-                        <Box className="m-5" sx={{ display: { xs: 'block', sm: 'none' } }} onClick={e => setFilter(v => v ? false : true)}>Filter</Box>
+                        <Box className="m-5" sx={{ display: { xs: 'block', sm: 'none' },border:'none' }} onClick={e => setFilter(v => v ? false : true)}component='button' >Filter</Box>
                     </Stack>
                     <section id="products" >
                         <Stack direction="row" >
-                            <Box sx={{ display: { xs: filter ? 'block' : 'none', sm: 'block' } }} className="col-md-3   mt-1 ">
-                                {/* Price Filter */}
-                                <div className="p-6" onMouseUp={() => setPriceChanged(price)}>
+                            <Box sx={{ display: { xs: filter ? 'block' : 'none', sm: 'block' } }} className="col3  mt-1 ">
+                                <div className="pr-6" onMouseUp={() => setPriceChanged(price)}>
                                     <RangeSlider price={price} setPrice={setPrice} />
                                 </div>
                                 <hr className="mt-2" />
-                                {/* Category Filter */}
                                 <div className="mt-5">
-                                    <h3 className="mb-3">Categories</h3>
+                                    <h4 className="mb-3">Categories</h4>
                                     <ul className="pl-0">
                                         {categories.map(category =>
                                             <li
@@ -129,10 +127,10 @@ export default function ProductSearch() {
                                     </ul>
                                 </div>
                             </Box>
-                            <div className="col-6 col-md-9">
-                                <div className="row">
+                            <div >
+                                <div className="products">
                                     {products && products.map(product => (
-                                        <Product col={4} key={product._id} product={product} />
+                                        <Product  key={product._id} product={product} />
                                     ))}
                                 </div>
                             </div>

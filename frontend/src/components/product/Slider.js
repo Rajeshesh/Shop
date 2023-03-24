@@ -11,8 +11,9 @@ export default function RangeSlider({ price: value, setPrice: setValue }) {
 
     return (
         <Slider
+        size='small'
             min={10}
-            step={10}
+            step={30}
             max={1000}
             getAriaLabel={() => 'Temperature range'}
             value={value}

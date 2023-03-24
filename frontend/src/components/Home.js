@@ -33,17 +33,17 @@ export  default function Home(){
             {loading ? <Loader/>:
                 <Fragment>
                     <MetaData title={'Buy Best Products'} />
-                    <h1 id="products_heading">Latest Products</h1>
-                    <section id="products" className="container mt-5">
-                        <div className="row">
+                    <h3 className="mt-3 mb-1">Latest Products</h3>
+                    <section  className="mt-2">
+                        <div className="products ">
                             { products && products.map(product => (
-                                <Product col={3} key={product._id}  product={product}/>
+                                <Product key={product._id}  product={product}/>
                             ))}
                         
                         </div>
                     </section>
                     {productsCount > 0 && productsCount > resPerPage?
-                    <div className="d-flex justify-content-center mt-5">
+                    <div className="d-flex justify-content-center mt-3">
                            <Pagination 
                                 activePage={currentPage}
                                 onChange={setCurrentPageNo}
