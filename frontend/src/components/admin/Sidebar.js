@@ -1,41 +1,36 @@
-import { Link, useNavigate } from 'react-router-dom'
-import { NavDropdown } from 'react-bootstrap'
+import { Box } from '@mui/material'
+import { Link } from 'react-router-dom'
+
 
 export default function Sidebar() {
 
-    const navigate = useNavigate()
     return (
 
-        <div className="sidebar-wrapper">
-            <nav id="sidebar">
-                <ul className="list-unstyled components">
-                    <li>
-                        <Link to="/admin/dashboard"><i className="fa fa-tachometer-alt"></i> Dashboard</Link>
-                    </li>
+        <div className="admin__nav">
+            <Box className='p-0 pt-5 pb-5'>
+                <div>
+                    <Link to="/admin/dashboard">Dashboard</Link>
+                </div>
+                <div>
+                    <Link to="/admin/products">Products</Link>
+                </div>
 
-                    <li>
-                        < NavDropdown title={
-                            <i className='fa fa-product-hunt'>product</i>
-                        }>
-                            <NavDropdown.Item onClick={() => navigate("/admin/products")}><i className='fa fa-shopping-basket'>All</i></NavDropdown.Item>
-                            <NavDropdown.Item onClick={() => navigate("/admin/products/create")}><i className='fa fa-plus'>Create</i></NavDropdown.Item>
-                        </NavDropdown>
+                <div>
+                    <Link to="/admin/products/create">Create Product</Link>
+                </div>
 
-                    </li>
+                <div>
+                    <Link to="/admin/order"> Orders</Link>
+                </div>
 
-                    <li>
-                        <Link to="/admin/order"><i className="fa fa-shopping-basket"></i> Orders</Link>
-                    </li>
+                <div>
+                    <Link to="/admin/users">Users</Link>
+                </div>
 
-                    <li>
-                        <Link to="/admin/users"><i className="fa fa-users"></i> Users</Link>
-                    </li>
-
-                    <li>
-                        <Link to="/admin/reviews"><i className="fa fa-users"></i> Reviews</Link>
-                    </li>
-                </ul>
-            </nav>
+                <div>
+                    <Link to="/admin/reviews">Reviews</Link>
+                </div>
+            </Box>
         </div>
     )
 }

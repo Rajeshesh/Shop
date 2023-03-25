@@ -9,6 +9,7 @@ import Loader from '../layouts/Loader'
 import { MDBDataTable } from 'mdbreact'
 import { toast } from "react-toastify"
 import { clearProductDeleted } from "../../slices/productSlice"
+import { Box } from "@mui/material"
 
 export default function ProductsList() {
     const { products = [], loading = true, error } = useSelector(state => state.productsState)
@@ -94,10 +95,11 @@ export default function ProductsList() {
 
 
     return (
-        <div className="row">
-            <div className="col-12 col-md-2">
+        <div className="">
+            <Box className=''>
+
                 <Sidebar />
-            </div>
+            </Box>
             <div className="col-12 col-md-10">
                 <h1 className="my-4">Product List</h1>
                 <>

@@ -1,3 +1,4 @@
+import { Box } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
@@ -132,10 +133,11 @@ export default function UpdateProduct() {
     return (
 
 
-        <div className="row">
-            <div className="col-12 col-md-2">
+        <div className="">
+            <Box className=''>
+
                 <Sidebar />
-            </div>
+            </Box>
             <div className="col-12 col-md-10">
                 <>
                     <div className="wrapper my-5">

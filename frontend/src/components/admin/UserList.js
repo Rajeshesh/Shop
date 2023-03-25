@@ -8,6 +8,7 @@ import Loader from '../layouts/Loader'
 import { MDBDataTable } from 'mdbreact'
 import { toast } from "react-toastify"
 import { deleteUser, getUsers } from "../../actions/userActions"
+import { Box } from "@mui/material"
 
 export default function UserList() {
     const { users = [], loading = true, error, isUserDeleted } = useSelector(state => state.userState)
@@ -88,10 +89,11 @@ export default function UserList() {
 
 
     return (
-        <div className="row">
-            <div className="col-12 col-md-2">
+        <div className="">
+            <Box className=''>
+
                 <Sidebar />
-            </div>
+            </Box>
             <div className="col-12 col-md-10">
                 <h1 className="my-4">User List</h1>
                 <>
