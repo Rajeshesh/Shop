@@ -4,12 +4,14 @@ import { useParams } from "react-router-dom";
 import { createReview, getProduct } from "../../actions/productActions"
 import { clearReviewSubmitted, clearError, clearProduct } from "../../slices/productSlice"
 import Loader from '../layouts/Loader';
-import { Carousel } from 'react-bootstrap';
+import { Carousel,Modal } from 'react-bootstrap';
 import MetaData from "../layouts/MetaData";
 import { addCartItem } from "../../actions/cartActions";
-import { Modal } from 'react-bootstrap'
 import { toast } from "react-toastify";
 import ProductReview from "./ProductReview";
+
+import { Button, IconButton } from '@mui/material'
+import { KeyboardDoubleArrowLeft, KeyboardDoubleArrowRight } from '@mui/icons-material'
 
 
 export default function ProductDetail() {
@@ -86,18 +88,18 @@ export default function ProductDetail() {
             {loading ? <Loader /> :
                 <Fragment>
                     <MetaData title={product.name} />
-                    <div className="row f-flex justify-content-around">
-                        <div className="col-12 col-lg-5 img-fluid" id="product_image">
+                    <div className="productDetail">
+                        <div className="" id="">
                             <Carousel pause="hover">
                                 {product.images && product.images.map(image =>
                                     <Carousel.Item key={image._id}>
-                                        <img className="d-block w-100" src={image.image} alt={product.name} height="500" width="500" />
+                                        <img className="carousel__imag" src={image.image} alt={product.name} height="350" width="350" />
                                     </Carousel.Item>
                                 )}
                             </Carousel>
                         </div>
 
-                        <div className="col-12 col-lg-5 mt-5">
+                        <div className=" mt-5">
                             <h3>{product.name}</h3>
                             <p id="product_id">Product # {product._id}</p>
 
@@ -112,40 +114,48 @@ export default function ProductDetail() {
 
                             <p id="product_price">${product.price}</p>
                             <div className="stockCounter d-inline">
-                                <span className="btn btn-danger minus" onClick={decreaseQty}>-</span>
+                                <IconButton className="" onClick={decreaseQty}><KeyboardDoubleArrowLeft /></IconButton>
 
-                                <input type="number" className="form-control count d-inline" value={quantity} readOnly />
+                                <input type="number" className="count" value={quantity} readOnly />
 
-                                <span className="btn btn-primary plus" onClick={increaseQty}>+</span>
+                                <IconButton className="" onClick={increaseQty}><KeyboardDoubleArrowRight /></IconButton>
                             </div>
-                            <button type="button" id="cart_btn" disabled={product.stock === 0 ? true : false} className="btn btn-primary d-inline ml-4"
+                            <Button type="button" variant="contained" disabled={product.stock === 0 ? true : false} className="ml-4"
                                 onClick={() => {
                                     dispatch(addCartItem(product._id, quantity))
                                     toast('Cart Item Added!', {
                                         type: 'success',
                                         position: toast.POSITION.BOTTOM_CENTER,
                                     })
-                                }}>Add to Cart</button>
+                                }}>Add to Cart</Button>
 
                             <hr />
 
-                            <p>Status: <span className={product.stock > 0 ? 'greenColor' : 'redColor'} id="stock_status">{product.stock > 0 ? 'In Stock' : 'Out of Stock'}</span></p>
+                            <p>Status: <span className={product.stock > 0 ? 'greenColor' : 'redColor'} >{product.stock > 0 ? 'In Stock' : 'Out of Stock'}</span></p>
 
                             <hr />
 
                             <h4 className="mt-2">Description:</h4>
                             <p>{product.description}</p>
                             <hr />
-                            <p id="product_seller mb-3">Sold by: <strong>{product.seller}</strong></p>
+                            <p id="product_seller mb-1">Sold by: <strong>{product.seller}</strong></p>
 
                             {user ?
-                                <button id="review_btn" type="button" className="btn btn-primary mt-4" data-toggle="modal" data-target="#ratingModal" onClick={handleShow}>
+                                <Button type="button" variant="contained" className="mt-4 mb-4" data-toggle="modal" data-target="#ratingModal" onClick={handleShow}>
                                     Submit Your Review
-                                </button> :
-                                <div className="alert alert-danger mt-5">Login to post Review</div>
+                                </Button> :
+                                <Button variant="outlined" className="mt-5">Login to post Review</Button>
                             }
 
-                            <div className="row mt-2 mb-5">
+                           
+
+                        </div>
+
+                    </div>
+                    {
+                        product.reviews && product.reviews.length > 0 ? <ProductReview reviews={product.reviews} /> : null
+                    }
+                     <div className="row mt-2 mb-5">
                                 <div className="rating w-50">
                                     <Modal show={show} onHide={handleClose}>
                                         <Modal.Header closeButton>
@@ -174,13 +184,6 @@ export default function ProductDetail() {
 
                                 </div>
                             </div>
-
-                        </div>
-
-                    </div>
-                    {
-                        product.reviews && product.reviews.length > 0 ? <ProductReview reviews={product.reviews} /> : null
-                    }
                 </Fragment>}
         </Fragment >
     )

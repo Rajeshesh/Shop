@@ -5,11 +5,11 @@ export default function ProductReview({ reviews }) {
 
 
     return (
-        <div className="reviews w-75">
+        <div className="">
             <h3>Other's Reviews:</h3>
             <hr />
             {reviews && reviews.map((review, i) => (
-                <div key={i} className="review my-3">
+                <div key={i} className="review mt-2 mb-2">
                     <div className="ratings__outer">
                         <div className="ratings__inner" style={{ width: `${review.rating / 5 * 100}%` }}></div>
                     </div>

@@ -99,3 +99,19 @@
 .yellow {
     color: #fdcc0d;
 }
+
+// ProductDetail
+.carousel__imag{
+    object-fit: contain;
+}
+.productDetail{
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(350px,1fr));
+    margin: 0 auto;
+}
+
+
+
+
+
+
