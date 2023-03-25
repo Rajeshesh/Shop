@@ -1,19 +1,33 @@
 /* Cart */
 
 .cart-item {
-    margin: 1.8rem 0rem;
-    padding: 0rem 0.7rem;
-  }
-  
-  .cart-item a {
-    color: grey;
-  }
+  margin: 1.8rem 0rem;
+  padding: 0rem 0.7rem;
+}
+
+.cart-item a {
+  color: grey;
+}
 
 
-  .OTable{
-    overflow: auto;
-    &::-webkit-scrollbar{
-      display: none;
-    }
-  }
+.OTable {
+  overflow: auto;
 
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.orderDetail{
+  margin: 0 auto;
+  max-width: 800px;
+}
+.orderItem {
+  display: flex;
+  flex-flow: row ;
+  justify-content: space-between;
+  max-width: 650px;
+  & a{
+    text-decoration: none;
+  }
+}
