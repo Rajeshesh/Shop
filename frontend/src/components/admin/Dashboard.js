@@ -51,7 +51,7 @@ export default function Dashboard() {
                 <Sidebar />
             </Box>
             <div>
-                <div className="col-12 col-md-10">
+                <div className="col-12 col-md-10 dashboard">
                     <h1 className="my-4">Dashboard</h1>
                     <div className="row pr-4">
                         <div className="col-xl-12 col-sm-12 mb-3">
