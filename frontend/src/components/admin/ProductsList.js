@@ -105,7 +105,7 @@ export default function ProductsList() {
                         bordered
                         striped
                         hover
-                        className="px-3" />}
+                        className="px-3 OTable" />}
                 </>
 
             </div>

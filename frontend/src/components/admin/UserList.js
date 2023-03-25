@@ -99,7 +99,7 @@ export default function UserList() {
                         bordered
                         striped
                         hover
-                        className="px-3" />}
+                        className="px-3 OTable" />}
                 </>
 
             </div>

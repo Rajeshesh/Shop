@@ -65,8 +65,8 @@ export default function UserOrder() {
     return (
         <>
             <Metadata title='My Orders' />
-            <h1 className='mt-5'>My Orders</h1>
-            <MDBDataTable className='px-3' bordered striped hover data={setOrders()} />
+            <h1 className='mt-5 '>My Orders</h1>
+            <MDBDataTable className='px-3 OTable' bordered striped hover data={setOrders()} />
 
 
 
