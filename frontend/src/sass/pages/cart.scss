@@ -1,0 +1,53 @@
+
+.cart {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+
+    &__item {
+        display: flex;
+        align-items: center;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+
+        & img {
+            width: 75px;
+            height: 90px;
+            object-fit: contain;
+        }
+
+
+        &--action {
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: space-between;
+            text-align: center;
+
+            align-content: center;
+
+            & :last-child {
+                display: flex;
+                justify-content: center;
+                align-content: center;
+            }
+        }
+    }
+
+    &__one {
+        max-width: 700px;
+
+    }
+
+    &__two {
+        &>div {
+            text-align: center;
+            margin: 10px;
+            padding: 10px;
+            border-radius: 0 15px;
+            border: 1px solid rgb(184, 170, 170);
+
+        }
+    }
+
+}

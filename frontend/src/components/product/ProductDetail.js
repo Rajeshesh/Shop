@@ -113,7 +113,7 @@ export default function ProductDetail() {
                             <hr />
 
                             <p id="product_price">${product.price}</p>
-                            <div className="stockCounter d-inline">
+                            <div className="stockCounter ">
                                 <IconButton className="" onClick={decreaseQty}><KeyboardDoubleArrowLeft /></IconButton>
 
                                 <input type="number" className="count" value={quantity} readOnly />
