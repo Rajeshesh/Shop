@@ -45,8 +45,8 @@ export default function Shipping() {
         <Fragment>
             <CheckoutSteps shipping />
             <div className="">
-                <div className="shipping p-30">
-                    <form onSubmit={submitHandler} className="shipping__form  ">
+                <div className="input p-30">
+                    <form onSubmit={submitHandler} className="input__form  ">
                         <h1 className="mb-6">Shipping Info</h1>
                         <div className="mb-3">
                             <label htmlFor="address_field">Address</label>
@@ -59,7 +59,7 @@ export default function Shipping() {
                             />
                         </div>
 
-                        <div className="">
+                        <div className="mb-3">
                             <label htmlFor="city_field">City</label>
                             <input
                                 type="text"
@@ -70,7 +70,7 @@ export default function Shipping() {
                             />
                         </div>
 
-                        <div className="">
+                        <div className="mb-3">
                             <label htmlFor="phone_field">Phone No</label>
                             <input
                                 type="phone"
@@ -81,7 +81,7 @@ export default function Shipping() {
                             />
                         </div>
 
-                        <div className="">
+                        <div className="mb-3">
                             <label htmlFor="postal_code_field">Postal Code</label>
                             <input
                                 type="number"
@@ -92,7 +92,7 @@ export default function Shipping() {
                             />
                         </div>
 
-                        <div className="">
+                        <div className="mb-3">
                             <label htmlFor="country_field">Country</label>
                             <select
                                 id="country_field"
@@ -107,7 +107,7 @@ export default function Shipping() {
                                 ))}
                             </select>
                         </div>
-                        <div className="">
+                        <div className="mb-3">
                             <label htmlFor="State_field">State</label>
                             <input
                                 type="text"
