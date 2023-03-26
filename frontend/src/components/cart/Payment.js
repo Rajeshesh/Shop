@@ -1,3 +1,4 @@
+import { Button } from "@mui/material"
 import { useElements, useStripe } from "@stripe/react-stripe-js"
 import {
     CardNumberElement, CardExpiryElement, CardCvcElement
@@ -123,9 +124,9 @@ export default function Payment() {
 
 
     return (
-        <div className="row wrapper">
-            <div className="col-10 col-lg-5">
-                <form onSubmit={submitHandler} className="shadow-lg">
+        <div className="mt-16">
+            <div className="input">
+                <form onSubmit={submitHandler} className="input__form">
                     <h1 className="mb-4">Card Info</h1>
                     <div className="form-group">
                         <label htmlFor="card_num_field">Card Number</label>
@@ -155,9 +156,9 @@ export default function Payment() {
                     </div>
 
 
-                    <button id="pay_btn" type="submit" className="btn btn-block py-3">
+                    <Button variant="contained" type="submit" className=" mt-5">
                         Pay={`$${orderInfo && orderInfo.totalPrice}`}
-                    </button>
+                    </Button>
 
                 </form>
             </div>

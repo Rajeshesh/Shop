@@ -58,7 +58,7 @@
         max-width: 500px;
         margin: 0 auto;
         padding: 30px;
-        border-radius:  10px 0;
+        border-radius: 10px 0;
         box-shadow: 0 0 40px wheat;
 
 
@@ -80,3 +80,36 @@
         }
     }
 }
+
+// confirmOrder
+.confirmOrder {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+
+    &__product {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    &__summary {
+        box-shadow: 0 0 5px gray;
+        border-radius: 10px 0;
+    }
+}
+
+//payment
+
+
+//orderSuccess
+
+.orderSuccess{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+}
+

@@ -4,6 +4,7 @@ import { validateShipping } from "./Shipping";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import CheckoutSteps from "./CheckoutSteps";
+import { Button } from "@mui/material";
 
 
 export default function ConfirmOrder() {
@@ -37,55 +38,67 @@ export default function ConfirmOrder() {
         <>
             <MetaData title={'Confirm Order'} />
             <CheckoutSteps confirmOrder shipping />
-            <div className="row d-flex justify-content-between">
-                <div className="col-12 col-lg-8 mt-5 order-confirm">
+            <div className="confirmOrder">
+                <div className="">
+                    <div>
 
-                    <h4 className="mb-3">Shipping Info</h4>
-                    <p><b>Name:</b> {user.name}</p>
-                    <p><b>Phone:</b>{shippingInfo.phoneNo}</p>
-                    <p className="mb-4"><b>Address:</b> {shippingInfo.address},{shippingInfo.city},{shippingInfo.state}-{shippingInfo.postalCode},{shippingInfo.country} </p>
+                        <h4 className="mb-3">Shipping Info</h4>
+                        <div className="pl-15">
+                            <p><b>Name:</b> {user.name}</p>
+                            <p><b>Phone:</b>{shippingInfo.phoneNo}</p>
+                            <p className="mb-4"><b>Address:</b> {shippingInfo.address},{shippingInfo.city},<br />{shippingInfo.state}-{shippingInfo.postalCode},{shippingInfo.country} </p>
+
+                        </div>
+
+                    </div>
 
                     <hr />
-                    <h4 className="mt-4">Your Cart Items:</h4>
-                    {cartItems.map((item,i) => (
-                        <div key={i}>
-                            <div className="cart-item my-1">
-                                <div className="row">
-                                    <div className="col-4 col-lg-2">
-                                        <img src={item.image} alt={item.name} height="45" width="65" />
+                    <div>
+                        <h4 className="mt-4">Your Cart Items:</h4>
+                        {cartItems.map((item, i) => (
+                            <div key={i}>
+                                <div className="mt-2 mb-2">
+                                    <div className="confirmOrder__product">
+                                        <div className="mr-4">
+                                            <img src={item.image} alt={item.name} height="45" width="65" />
+                                        </div>
+
+                                        <div className="mr-4">
+                                            <Link to={`/product/${item.product}`}>{item.name}</Link>
+                                        </div>
+
+
+                                        <div className=" mt-4 mr-4">
+                                            <p>{item.quantity} x ${item.price} = <b>${item.quantity * item.price}</b></p>
+                                        </div>
+
                                     </div>
-
-                                    <div className="col-5 col-lg-6">
-                                        <Link to={`/product/${item.product}`}>{item.name}</Link>
-                                    </div>
-
-
-                                    <div className="col-4 col-lg-4 mt-4 mt-lg-0">
-                                        <p>{item.quantity} x ${item.price} = <b>${item.quantity * item.price}</b></p>
-                                    </div>
-
                                 </div>
+                                <hr />
                             </div>
-                            <hr />
-                        </div>
-                    ))}
+                        ))}
+                    </div>
+
                     <hr />
                 </div>
 
-                <div className="col-12 col-lg-3 my-4">
-                    <div id="order_summary">
+                <div className="confirmOrder__summary p-10 mt-4">
+                    <div >
                         <h4>Order Summary</h4>
                         <hr />
-                        <p>Subtotal:  <span className="order-summary-values">${itemsPrice}</span></p>
-                        <p>Shipping: <span className="order-summary-values">${shippingPrice}</span></p>
-                        <p>Tax:  <span className="order-summary-values">${taxPrice}</span></p>
+                        <div className="pl-10"> 
+                            <p>Subtotal:  <span className="">${itemsPrice}</span></p>
+                            <p>Shipping: <span className="">${shippingPrice}</span></p>
+                            <p>Tax:  <span className="">${taxPrice}</span></p>
+
+                            <hr />
+
+                            <p>Total: <span className="">${totalPrice}</span></p>
+
+                        </div>
 
                         <hr />
-
-                        <p>Total: <span className="order-summary-values">${totalPrice}</span></p>
-
-                        <hr />
-                        <button onClick={processPayment} id="checkout_btn" className="btn btn-primary btn-block">Proceed to Payment</button>
+                        <Button variant="contained" onClick={processPayment} className="">Proceed to Payment</Button>
                     </div>
                 </div>
 
