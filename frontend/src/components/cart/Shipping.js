@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom"
 import { saveShippingInfo } from "../../slices/cartSlice"
 import CheckoutSteps from "./CheckoutSteps"
 import { toast } from "react-toastify"
+import {Button}from '@mui/material'
 
 export const validateShipping = (shippingInfo, navigate) => {
     if (!shippingInfo.address ||
@@ -43,63 +44,58 @@ export default function Shipping() {
     return (
         <Fragment>
             <CheckoutSteps shipping />
-            <div className="row wrapper">
-                <div className="col-10 col-lg-5">
-                    <form onSubmit={submitHandler} className="shadow-lg">
-                        <h1 className="mb-4">Shipping Info</h1>
-                        <div className="form-group">
+            <div className="">
+                <div className="input p-30">
+                    <form onSubmit={submitHandler} className="input__form  ">
+                        <h1 className="mb-6">Shipping Info</h1>
+                        <div className="mb-3">
                             <label htmlFor="address_field">Address</label>
                             <input
                                 type="text"
                                 id="address_field"
-                                className="form-control"
                                 value={address}
                                 onChange={(e) => setAddress(e.target.value)}
                                 required
                             />
                         </div>
 
-                        <div className="form-group">
+                        <div className="mb-3">
                             <label htmlFor="city_field">City</label>
                             <input
                                 type="text"
                                 id="city_field"
-                                className="form-control"
                                 value={city}
                                 onChange={(e) => setCity(e.target.value)}
                                 required
                             />
                         </div>
 
-                        <div className="form-group">
+                        <div className="mb-3">
                             <label htmlFor="phone_field">Phone No</label>
                             <input
                                 type="phone"
                                 id="phone_field"
-                                className="form-control"
                                 value={phoneNo}
                                 onChange={(e) => setPhoneNo(e.target.value)}
                                 required
                             />
                         </div>
 
-                        <div className="form-group">
+                        <div className="mb-3">
                             <label htmlFor="postal_code_field">Postal Code</label>
                             <input
                                 type="number"
                                 id="postal_code_field"
-                                className="form-control"
                                 value={postalCode}
                                 onChange={(e) => setPostalCode(e.target.value)}
                                 required
                             />
                         </div>
 
-                        <div className="form-group">
+                        <div className="mb-3">
                             <label htmlFor="country_field">Country</label>
                             <select
                                 id="country_field"
-                                className="form-control"
                                 value={country}
                                 onChange={(e) => setCountry(e.target.value)}
                                 required
@@ -111,25 +107,24 @@ export default function Shipping() {
                                 ))}
                             </select>
                         </div>
-                        <div className="form-group">
+                        <div className="mb-3">
                             <label htmlFor="State_field">State</label>
                             <input
                                 type="text"
                                 id="State_field"
-                                className="form-control"
                                 value={state}
                                 onChange={(e) => setState(e.target.value)}
                                 required
                             />
                         </div>
 
-                        <button
-                            id="shipping_btn"
+                        <Button
+                        variant="contained"
                             type="submit"
-                            className="btn btn-block py-3"
+                            className="mt-4"
                         >
                             CONTINUE
-                        </button>
+                        </Button>
                     </form>
                 </div>
             </div>

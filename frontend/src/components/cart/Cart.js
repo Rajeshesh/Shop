@@ -1,3 +1,5 @@
+import { DeleteForever, KeyboardDoubleArrowLeft, KeyboardDoubleArrowRight } from '@mui/icons-material'
+import { Button, IconButton } from '@mui/material'
 import { Fragment } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
@@ -22,11 +24,11 @@ export default function Cart() {
         dispatch(decreaseCartItemQty(item.product))
     }
     const checkoutHandler = () => {
-     navigate('/shipping')
+        navigate('/shipping')
 
 
 
-    //  navigate('/login?redirect=shipping') want to check why isn't work.
+        //  navigate('/login?redirect=shipping') want to check why isn't work.
 
 
 
@@ -34,44 +36,45 @@ export default function Cart() {
     }
 
     return (
-        <>
+        <div>
             {items.length === 0 ? <h2 className="mt-5">Your Cart: <b>0 items</b></h2> : <>
                 <h2 className="mt-5">Your Cart: <b>{items.length}items</b></h2>
 
-                <div className="row d-flex justify-content-between">
-                    <div className="col-12 col-lg-8">
-                        {items.map((item,int) => (
+                <div className="cart">
+                    <div className="cart__one">
+                        {items.map((item, int) => (
                             <Fragment key={int}>
                                 <hr />
-                                <div className="cart-item">
-                                    <div className="row">
-                                        <div className="col-4 col-lg-3">
-                                            <img src={item.image} alt={item.name} height="90" width="115" />
+                                <div className="cart__item">
+                                    <div className="">
+                                        <img src={item.image} alt={item.name}/>
+                                    </div>
+
+                                    <div className="cart__item--action pl-5">
+                                        <div className='pt-10'>
+                                            <Link to={`/product/${item.product}`} >{item.name.slice(0,14)}...</Link>
                                         </div>
 
-                                        <div className="col-5 col-lg-3">
-                                            <Link to={`/product/${item.product}`} >{item.name}</Link>
-                                        </div>
+                                        <div className=''>
+                                            <div className='pt-10 pl-9'>${item.price}</div>
 
+                                            <div className="">
+                                                <div className="stockCounter">
+                                                    <IconButton className="" onClick={() => decreaseQty(item)}><KeyboardDoubleArrowLeft /></IconButton>
 
-                                        <div className="col-4 col-lg-2 mt-4 mt-lg-0">
-                                            <p id="card_item_price">${item.price}</p>
-                                        </div>
+                                                    <input type="number" className="count" value={item.quantity} readOnly />
 
-                                        <div className="col-4 col-lg-3 mt-4 mt-lg-0">
-                                            <div className="stockCounter d-inline">
-                                                <span className="btn btn-danger minus" onClick={() => decreaseQty(item)}>-</span>
-                                                <input type="number" className="form-control count d-inline" value={item.quantity} readOnly />
-
-                                                <span className="btn btn-primary plus" onClick={() => increaseQty(item)
-                                                }>+</span>
+                                                    <IconButton className="" onClick={() => increaseQty(item)
+                                                    }><KeyboardDoubleArrowRight /></IconButton>
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <div className="col-4 col-lg-1 mt-4 mt-lg-0">
-                                            <i id="delete_cart_item" className="fa fa-trash btn btn-danger" onClick={() => dispatch(removeItemFromCart(item.product))}></i>
-                                        </div>
 
+                                            <IconButton className='ml-3' onClick={() => dispatch(removeItemFromCart(item.product))}>
+                                                <DeleteForever />
+                                            </IconButton>
+
+                                        </div>
                                     </div>
                                 </div>
                             </Fragment>
@@ -79,22 +82,22 @@ export default function Cart() {
                         <hr />
                     </div>
 
-                    <div className="col-12 col-lg-3 my-4">
-                        <div id="order_summary">
+                    <div className="cart__two">
+                        <div>
                             <h4>Order Summary</h4>
                             <hr />
-                            <p>Subtotal:  <span className="order-summary-values">
+                            <p>Subtotal:  <span className="">
                                 {items.reduce((acc, item) => (acc + item.quantity), 0)} (Units)</span></p>
-                            <p>Est. total: <span className="order-summary-values">${items.reduce((acc, item) => (acc + item.quantity * item.price), 0)}</span></p>
+                            <p>Est. total: <span className="">${parseInt(items.reduce((acc, item) => (acc + item.quantity * item.price), 0))}</span></p>
 
                             <hr />
-                            <button id="checkout_btn" className="btn btn-primary btn-block" onClick={() => checkoutHandler()}>Check out</button>
+                            <Button variant='contained' className="" onClick={() => checkoutHandler()}>Check out</Button>
                         </div>
                     </div>
                 </div>
 
             </>}
 
-        </>
+        </div>
     )
 }
