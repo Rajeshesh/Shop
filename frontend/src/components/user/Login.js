@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { login, clearError } from "../../actions/userActions";
 import MetaData from "../layouts/MetaData";
 import { toast } from 'react-toastify';
+import { Button } from "@mui/material";
 
 export default function Login() {
     const { loading, error, isAuthenticated } = useSelector(state => state.authState)
@@ -42,44 +43,52 @@ export default function Login() {
     return (
         <Fragment>
             <MetaData title={'Login'} />
-            <div className="row wrapper">
-                <div className="col-10 col-lg-5">
-                    <form className="shadow-lg" onSubmit={submitHandler}>
+            <div className="">
+                <div className="input">
+                    <form className="input__form mt-10" onSubmit={submitHandler}>
                         <h1 className="mb-3">Login</h1>
-                        <div className="form-group">
+                        <div className="">
                             <label htmlFor="email_field">Email</label>
                             <input
                                 type="email"
                                 id="email_field"
-                                className="form-control"
+                                className=""
                                 value={email}
                                 onChange={e => setEmail(e.target.value)}
                             />
                         </div>
 
-                        <div className="form-group">
+                        <div className="">
                             <label htmlFor="password_field">Password</label>
                             <input
                                 type="password"
                                 id="password_field"
-                                className="form-control"
+                                className=""
                                 value={password}
                                 onChange={e => setPassword(e.target.value)}
                             />
                         </div>
+                        <div className="input__form--a">
+                            <Link to="/password/forgot" className=" mb-4">Forgot Password?</Link>
 
-                        <Link to="/password/forgot" className="float-right mb-4">Forgot Password?</Link>
+                        </div>
 
-                        <button
-                            id="login_button"
-                            type="submit"
-                            className="btn btn-block py-3"
-                            disabled={loading}
-                        >
-                            LOGIN
-                        </button>
+                        <div>
+                            <Button
+                                variant='contained'
+                                id="login_button"
+                                type="submit"
+                                className="mt-5"
+                                disabled={loading}
+                            >
+                                LOGIN
+                            </Button>
 
-                        <Link to="/register" className="float-right mt-3">New User?</Link>
+                        </div>
+                        <div className="input__form--a">
+
+                            <Link to="/register" className="mt-3">New User?</Link>
+                        </div>
                     </form>
                 </div>
             </div>
