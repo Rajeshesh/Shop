@@ -11,6 +11,7 @@ import { toast } from "react-toastify"
 import { createOrder } from "../../actions/orderAction"
 import { orderCompleted } from "../../slices/cartSlice"
 import { clearError as clearOrderError } from "../../slices/orderSlice"
+import CheckoutSteps from "./CheckoutSteps"
 import { validateShipping } from "./Shipping"
 
 
@@ -125,6 +126,8 @@ export default function Payment() {
 
     return (
         <div className="mt-16">
+            <CheckoutSteps confirmOrder shipping payment={true}/>
+
             <div className="input">
                 <form onSubmit={submitHandler} className="input__form">
                     <h1 className="mb-4">Card Info</h1>
