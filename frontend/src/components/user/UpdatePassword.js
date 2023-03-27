@@ -2,6 +2,7 @@ import { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { clearError, UpdatePassword as UpdatePasswordAction } from "../../actions/userActions";
 import { toast } from "react-toastify";
+import { Button } from "@mui/material";
 
 export  default function UpdatePassword(){
     const { loading, error, user, isUpdated } = useSelector(state => state.authState)
@@ -43,40 +44,40 @@ export  default function UpdatePassword(){
 
     return (
         <Fragment>
-         <div className="row wrapper">
-            <div className="col-10 col-lg-5">
-                <form onSubmit={submitHandler} className="shadow-lg">
+         <div className="">
+            <div className="input">
+                <form onSubmit={submitHandler} className="input__form">
                     <h1 className="mb-3">New Password</h1>
 
-                    <div className="form-group">
+                    <div className="">
                         <label htmlFor="password_field">Password</label>
                         <input
                             type="password"
                             id="password_field"
-                            className="form-control"
+                            className=""
                             onChange={(e)=>setOldPassword(e.target.value)}
                             value={oldPassword}
                         />
                     </div>
 
-                    <div className="form-group">
+                    <div className="">
                         <label htmlFor="confirm_password_field">Confirm Password</label>
                         <input
                             type="password"
                             id="confirm_password_field"
-                            className="form-control"
+                            className=""
                             onChange={(e)=>setPassword(e.target.value)}
                             value={password}
                         />
                     </div>
 
-                    <button
+                    <Button
                         disabled={loading}
-                        id="new_password_button"
+                        variant='contained'
                         type="submit"
-                        className="btn btn-block py-3">
+                        className="mt-5">
                         Set Password
-                    </button>
+                    </Button>
 
                 </form>
             </div>

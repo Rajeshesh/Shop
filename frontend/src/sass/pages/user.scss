@@ -24,6 +24,7 @@
     }
 }
 
+
 .profile {
     margin: 0 auto;
     padding: 10px;
@@ -48,3 +49,19 @@
         justify-content: center;
     }
 }
+
+
+//Register
+
+.RAvatar{
+    & >div{
+        display: flex;
+        align-content: center;
+        & input{
+            border: none;
+            height: 2.5rem;
+        }
+    }
+}
+
+

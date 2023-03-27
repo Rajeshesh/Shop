@@ -2,9 +2,10 @@ import { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { clearError, forgotPassword, } from "../../actions/userActions";
 import { toast } from "react-toastify";
+import { Button } from "@mui/material";
 
 
-export  default function ForgotPassword(){
+export default function ForgotPassword() {
     const { loading, error, message } = useSelector(state => state.authState)
     const [email, setEmail] = useState("");
     const dispatch = useDispatch();
@@ -16,56 +17,57 @@ export  default function ForgotPassword(){
         dispatch(forgotPassword(formData));
     }
 
-    
+
 
     useEffect(() => {
-        if(message) {
-            toast(message,{
-                    type: 'success',
-                    position: toast.POSITION.BOTTOM_CENTER,
-                }
+        if (message) {
+            toast(message, {
+                type: 'success',
+                position: toast.POSITION.BOTTOM_CENTER,
+            }
             );
             setEmail("");
             return;
         }
-        if(error) {
-            toast(error,{
-                    type: 'error',
-                    position: toast.POSITION.BOTTOM_CENTER,
-                    onOpen: () => dispatch(clearError)
-                }
+        if (error) {
+            toast(error, {
+                type: 'error',
+                position: toast.POSITION.BOTTOM_CENTER,
+                onOpen: () => dispatch(clearError)
+            }
             );
             return;
         }
-    },[message, error,dispatch])
+    }, [message, error, dispatch])
 
     return (
         <Fragment>
-            <div className="row wrapper">
-                    <div className="col-10 col-lg-5">
-                        <form onSubmit={submitHandler} className="shadow-lg">
-                            <h1 className="mb-3">Forgot Password</h1>
-                            <div className="form-group">
-                                <label htmlFor="email_field">Enter Email</label>
-                                <input
-                                    type="email"
-                                    id="email_field"
-                                    className="form-control"
-                                    value={email}
-                                    onChange={e=>setEmail(e.target.value)}
-                                />
-                            </div>
+            <div className="">
+                <div className="input">
+                    <form onSubmit={submitHandler} className="input__form">
+                        <h1 className="mb-3">Forgot Password</h1>
+                        <div className="">
+                            <label htmlFor="email_field">Enter Email</label>
+                            <input
+                                type="email"
+                                id="email_field"
+                                className=""
+                                value={email}
+                                onChange={e => setEmail(e.target.value)}
+                            />
+                        </div>
 
-                            <button
-                                disabled={loading}
-                                id="forgot_password_button"
-                                type="submit"
-                                className="btn btn-block py-3">
-                                Send Email
-                        </button>
+                        <Button
+                        variant="contained"
+                            disabled={loading}
+                            id="forgot_password_button"
+                            type="submit"
+                            className=" mt-5">
+                            Send Email
+                        </Button>
 
-                        </form>
-                    </div>
+                    </form>
+                </div>
             </div>
         </Fragment>
     )

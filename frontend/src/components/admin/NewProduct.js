@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -106,29 +106,29 @@ export default function NewProduct() {
             </Box>
             <div className="col-12 col-md-10">
                 <>
-                    <div className="wrapper my-5">
-                        <form onSubmit={sumbitHandler} className="shadow-lg" encType='multipart/form-data'>
+                    <div className="input">
+                        <form onSubmit={sumbitHandler} className="input__form mt-5" encType='multipart/form-data'>
                             <h1 className="mb-4">New Product</h1>
 
-                            <div className="form-group">
+                            <div className="">
                                 <label htmlFor="name_field">Name</label>
-                                <input type="text" id="name_field" className="form-control" value={name} onChange={(e) => setName(e.target.value)} />
+                                <input type="text" id="name_field" className="" value={name} onChange={(e) => setName(e.target.value)} />
                             </div>
 
-                            <div className="form-group">
+                            <div className="">
                                 <label htmlFor="price_field">Price</label>
-                                <input type="text" id="price_field" className="form-control" value={price} onChange={(e) => setPrice(e.target.value)} />
+                                <input type="text" id="price_field" className="" value={price} onChange={(e) => setPrice(e.target.value)} />
                             </div>
 
-                            <div className="form-group">
+                            <div className="">
                                 <label htmlFor="description_field">Description</label>
-                                <textarea className="form-control" id="description_field"
+                                <textarea className="" id="description_field"
                                     value={description} onChange={(e) => setDescription(e.target.value)} rows="8"></textarea>
                             </div>
 
-                            <div className="form-group">
+                            <div className="">
                                 <label htmlFor="category_field">Category</label>
-                                <select className="form-control" id="category_field" onChange={(e) => setCategory(e.target.value)}>
+                                <select className="" id="category_field" onChange={(e) => setCategory(e.target.value)}>
                                     <option value=''>Select</option>
 
                                     {categories.map((item, i) => (
@@ -136,14 +136,14 @@ export default function NewProduct() {
                                     ))}
                                 </select>
                             </div>
-                            <div className="form-group">
+                            <div className="">
                                 <label htmlFor="stock_field">Stock</label>
-                                <input type="number" id="stock_field" className="form-control" value={stock} onChange={(e) => setStock(e.target.value)} />
+                                <input type="number" id="stock_field" className="" value={stock} onChange={(e) => setStock(e.target.value)} />
                             </div>
 
-                            <div className="form-group">
+                            <div className="">
                                 <label htmlFor="seller_field">Seller Name</label>
-                                <input type="text" id="seller_field" className="form-control" value={seller} onChange={(e) => setSeller(e.target.value)} />
+                                <input type="text" id="seller_field" className="" value={seller} onChange={(e) => setSeller(e.target.value)} />
                             </div>
 
                             <div className='form-group'>
@@ -173,11 +173,13 @@ export default function NewProduct() {
                             </div>
 
 
-                            <button id="login_button"
+                            <Button 
+                            variant="contained"
+                            id="login_button"
                                 disabled={loading}
-                                type="submit" className="btn btn-block py-3">
+                                type="submit" className="pt-5">
                                 CREATE
-                            </button>
+                            </Button>
 
                         </form>
                     </div>
