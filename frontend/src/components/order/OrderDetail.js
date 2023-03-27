@@ -38,11 +38,11 @@ export default function OrderDetail() {
                         <hr />
 
                         <h4 className="mt-4 mb-2">Payment</h4>
-                        <p className={isPaid ? 'greenColor' : 'redColor'}><b>{isPaid ? 'PAID' : 'NOT PAID'}</b></p>
+                        <p className={`${isPaid ? 'greenColor' : 'redColor'} p-10`}><b>{isPaid ? 'PAID' : 'NOT PAID'}</b></p>
 
 
                         <h4 className="mt-4 mb-2">Order Status</h4>
-                        <p className={orderStatus && orderStatus.includes('Delivered') ? 'greenColor' : 'redColor'}><b>{orderStatus}</b></p>
+                        <p className={`${orderStatus && orderStatus.includes('Delivered') ? 'greenColor' : 'redColor'} p-10`}><b>{orderStatus}</b></p>
 
 
                         <hr />
@@ -50,28 +50,26 @@ export default function OrderDetail() {
 
                         <div className=" mt-1 mb-1">
                             {orderItems && orderItems.map((item, i) => (
-                                <div className="orderItem mt-5 mb-5" key={i}>
+                                <div className="orderItem" key={i}>
                                     <div className="">
                                         <img src={item.image} alt="Laptop" height="45" width="65" />
                                     </div>
-
-                                    <Box sx={{ display: { xs: 'none', sm: 'block' } }} className="">
-                                        <Link to={`/product/${item.product}`}>{item.name}</Link>
-                                    </Box>
-                                    <Box sx={{ display: { xs: 'block', sm: 'none' } }} className="">
-                                        <Link to={`/product/${item.product}`}>{item.name.slice(0, 6)}...</Link>
-                                    </Box>
-
-
-                                    <div className="mt-4">
-                                        <p>${item.price}</p>
-                                    </div>
-
-                                    <div className="mt-4">
-                                        <p>{item.quantity} Piece(s)</p>
-                                    </div>
+                                    <div className=" pl-5 ">
+                                        <div >
+                                            <Box className="">
+                                                <Link to={`/product/${item.product}`}>{item.name}</Link>
+                                            </Box>
+                                        </div>
+                                        <div>
+                                            <div className="pl-15 ">
+                                                <b>${item.price}</b>
+                                            </div>
+                                            <div className="pl-10">
+                                                <b>{item.quantity} Piece(s)</b>
+                                            </div>
+                                        </div>
+                                    </div >
                                 </div>
-
                             ))}
 
                         </div>

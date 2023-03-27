@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from "react-redux"
-import { Button } from 'react-bootstrap'
 import { Link } from "react-router-dom"
 import { Fragment, useEffect } from "react"
 import { clearError, clearOrderDeleted } from "../../slices/orderSlice"
@@ -8,7 +7,9 @@ import Loader from '../layouts/Loader'
 import { MDBDataTable } from 'mdbreact'
 import { toast } from "react-toastify"
 import { adminOrders as adminOrdersAction, deleteOrders } from "../../actions/orderAction"
-import { Box } from "@mui/material"
+import { Box, IconButton } from "@mui/material"
+import { DeleteOutline, Edit } from "@mui/icons-material"
+
 
 export default function OrderList() {
     const { adminOrders = [], loading = true, error, isOrderDeleted } = useSelector(state => state.orderState)
@@ -52,8 +53,10 @@ export default function OrderList() {
                 status: <p style={{ color: order.orderStatus.includes('Processing') ? 'red' : 'green' }}>{order.orderStatus}</p>,
                 actions: (
                     <Fragment>
-                        <Link className="btn btn-primary" to={`/admin/order/${order._id}`}><i className="fa fa-pencil"></i></Link>
-                        <Button onClick={(e) => deleteHandler(e, order._id)} className="btn btn-danger py-1 px-2 ml-2"><i className="fa fa-trash"></i></Button>
+                        <IconButton color="primary">
+                            <Link className="" to={`/admin/order/${order._id}`}><Edit /></Link>
+                        </IconButton>
+                        <IconButton color="secondary" aria-label="delete" onClick={(e) => deleteHandler(e, order._id)} className=""><DeleteOutline /></IconButton>
                     </Fragment>)
             })
         })
@@ -97,15 +100,15 @@ export default function OrderList() {
 
                 <Sidebar />
             </Box>
-            <div className="col-12 col-md-10">
-                <h1 className="my-4">Order List</h1>
-                <>
+            <div className="orderList">
+                <h1 className="mt-4 mb-4">Order List</h1>
+                <div>
                     {loading ? <Loader /> : <MDBDataTable data={setOrders()}
                         bordered
                         striped
                         hover
-                        className="px-3 OTable" />}
-                </>
+                        className="pl-6 pr-6 OTable" />}
+                </div>
 
             </div>
         </div>

@@ -50,7 +50,7 @@ export default function ResetPassword() {
 
     return (
         <Fragment>
-            <div className="row wrapper">
+            <div className="">
                 <div className="input">
                     <form className="input__form" onSubmit={submitHandler}>
                         <h1 className="mb-3">New Password</h1>

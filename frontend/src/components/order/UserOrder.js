@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { userOrders as userOrdersAction } from '../../actions/orderAction'
 import Metadata from '../layouts/MetaData'
-
+import { Visibility } from '@mui/icons-material'
+import { IconButton } from '@mui/material'
 
 export default function UserOrder() {
 
@@ -53,7 +54,7 @@ export default function UserOrder() {
                 numOfItems: userOrder.orderItems.length,
                 amount: `$${userOrder.totalPrice}`,
                 status: userOrder.orderStatus && userOrder.orderStatus.includes('Delivered') ? (<p style={{ color: 'green' }} >{userOrder.orderStatus}</p >) : (<p style={{ color: 'red' }} >{userOrder.orderStatus}</p >),
-                action: <Link to={`/order/${userOrder._id}`} className='btn btn-primary'><i className='fa fa-eye'></i></Link>
+                action: <IconButton><Link to={`/order/${userOrder._id}`}><Visibility /></Link></IconButton>
             })
         })
         return data
@@ -63,13 +64,10 @@ export default function UserOrder() {
 
 
     return (
-        <>
+        <div className='myOrderList'>
             <Metadata title='My Orders' />
             <h1 className='mt-5 '>My Orders</h1>
-            <MDBDataTable className='px-3 OTable' bordered striped hover data={setOrders()} />
-
-
-
-        </>
+            <MDBDataTable className='pl-6 pr-6 OTable' bordered striped hover data={setOrders()} />
+        </div>
     )
 }

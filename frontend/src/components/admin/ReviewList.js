@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from "react-redux"
-import { Button } from 'react-bootstrap'
 import { Fragment, useEffect, useState } from "react"
 import { clearError, clearReviewDeleted } from "../../slices/productSlice"
 import Sidebar from "./Sidebar"
@@ -7,7 +6,8 @@ import Loader from '../layouts/Loader'
 import { MDBDataTable } from 'mdbreact'
 import { toast } from "react-toastify"
 import { deleteReview, getReviews } from "../../actions/productActions"
-import { Box } from "@mui/material"
+import { Box, IconButton,Button } from "@mui/material"
+import { DeleteOutline } from "@mui/icons-material"
 
 export default function ReviewList() {
     const { reviews = [], loading = true, error, isReviewDeleted } = useSelector(state => state.productState)
@@ -52,7 +52,7 @@ export default function ReviewList() {
                 comment: review.comment,
                 action: (
                     <Fragment>
-                        <Button onClick={(e) => deleteHandler(e, review._id)} className="btn btn-danger py-1 px-2 ml-2"><i className="fa fa-trash"></i></Button>
+                        <IconButton color="secondary" aria-label="delete" onClick={(e) => deleteHandler(e, review._id)}className="pl-6"><DeleteOutline /></IconButton>
                     </Fragment>)
             })
         })
@@ -98,22 +98,22 @@ export default function ReviewList() {
 
                 <Sidebar />
             </Box>
-            <div className="col-12 col-md-10">
-                <h1 className="my-4">Review List</h1>
-                <div className="row justify-content-center mt-5">
-                    <div className="col-5">
+            <div className="reviewList">
+                <h1 className="mt-4 mb-4">Review List</h1>
+                <div className=" mt-5">
+                    <div className="">
                         <form onSubmit={submitHandler} >
-                            <div className='form-group'>
+                            <div className=''>
                                 <label>Product ID</label>
                                 <input type='text'
                                     onChange={e => setProductId(e.target.value)}
                                     value={productId}
-                                    className='form-control' />
+                                    className='reviewList__input mb-2' />
 
                             </div>
-                            <button type="submit" disabled={loading} className='btn btn-primary btn-block py-2'>
+                            <Button variant="contained" type="submit" disabled={loading} className='btn btn-primary btn-block py-2'>
                                 Search
-                            </button>
+                            </Button>
 
                         </form>
                     </div>

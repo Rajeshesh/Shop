@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from "react-redux"
-import { Button } from 'react-bootstrap'
 import { Link } from "react-router-dom"
-import { useEffect } from "react"
+import { Fragment, useEffect } from "react"
 import { clearError } from "../../slices/productsSlice"
 import { deleteProduct, getAdminProduct } from "../../actions/productActions"
 import Sidebar from "./Sidebar"
@@ -9,7 +8,8 @@ import Loader from '../layouts/Loader'
 import { MDBDataTable } from 'mdbreact'
 import { toast } from "react-toastify"
 import { clearProductDeleted } from "../../slices/productSlice"
-import { Box } from "@mui/material"
+import { Box, IconButton } from "@mui/material"
+import { DeleteOutline, Edit } from "@mui/icons-material"
 
 export default function ProductsList() {
     const { products = [], loading = true, error } = useSelector(state => state.productsState)
@@ -53,10 +53,12 @@ export default function ProductsList() {
                 price: `$${product.price}`,
                 stock: product.stock,
                 actions: (
-                    <>
-                        <Link className="btn btn-primary" to={`/admin/product/${product._id}`}><i className="fa fa-pencil"></i></Link>
-                        <Button onClick={(e) => deleteHandler(e, product._id)} className="btn btn-danger py-1 px-2 ml-2"><i className="fa fa-trash"></i></Button>
-                    </>)
+                    <Fragment>
+                        <IconButton color="primary">
+                            <Link className="" to={`/admin/product/${product._id}`}><Edit /></Link>
+                        </IconButton>
+                        <IconButton color="secondary" aria-label="delete" onClick={(e) => deleteHandler(e, product._id)} className=""><DeleteOutline /></IconButton>
+                    </Fragment>)
             })
         })
 
@@ -100,15 +102,13 @@ export default function ProductsList() {
 
                 <Sidebar />
             </Box>
-            <div className="col-12 col-md-10">
-                <h1 className="my-4">Product List</h1>
-                <>
-                    {loading ? <Loader /> : <MDBDataTable data={setProducts()}
-                        bordered
-                        striped
-                        hover
-                        className="px-3 OTable" />}
-                </>
+            <div className="productList">
+                <h1 className="mt-4 mb-3">Product List</h1>
+                {loading ? <Loader /> : <MDBDataTable data={setProducts()}
+                    bordered
+                    striped
+                    hover
+                    className="pl-6 pr-6 OTable" />}
 
             </div>
         </div>

@@ -1,23 +1,67 @@
-
-.admin__nav>div{
+.admin__nav>div {
     display: flex;
     flex-flow: row nowrap;
     overflow-x: auto;
     list-style: none;
     background-color: rgb(159, 233, 90);
-    &>div{
+
+    &>div {
         min-width: 110px;
         text-align: center;
-        &>a{
+
+        &>a {
             display: block;
             text-decoration: none;
             padding: 5px auto;
         }
     }
-    &::-webkit-scrollbar{
+
+    &::-webkit-scrollbar {
         display: none;
     }
 }
-.dashboard{
+
+.dashboard {
     margin: 0 auto;
+}
+
+//productList
+
+.productList,
+.orderList,
+.userList,
+.reviewList,
+.myOrderList {
+    margin: 0 auto;
+    max-width: 1024px;
+}
+
+.reviewList__input {
+    width: 100%;
+    border: 1px solid gray;
+    background-color: white;
+    height: 2rem;
+}
+
+//updateOrder
+
+.updateOrder {
+    display: flex;
+    flex-flow: column;
+
+    & select,
+    .reviewList__input {
+        width: 100%;
+        border: 1px solid gray;
+        background-color: white;
+        height: 2rem;
+    }
+
+    &__btn {
+        text-align: right;
+    }
+
+    &>div {
+        width: 100% !important;
+    }
 }

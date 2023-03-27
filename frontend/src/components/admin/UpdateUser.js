@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
@@ -70,44 +70,42 @@ export default function UpdateUser() {
 
         <div className="">
             <Box className=''>
-
                 <Sidebar />
             </Box>
-            <div className="col-12 col-md-10">
-                <>
-                    <div className="wrapper my-5">
-                        <form onSubmit={sumbitHandler} className="shadow-lg" encType='multipart/form-data'>
-                            <h1 className="mb-4">Update User</h1>
+            <div className="">
+                <div className="input">
+                    <form onSubmit={sumbitHandler} className="input__form" encType='multipart/form-data'>
+                        <h1 className="mb-4">Update User</h1>
 
-                            <div className="form-group">
-                                <label htmlFor="name_field">Name</label>
-                                <input type="text" id="name_field" className="form-control" value={name} onChange={(e) => setName(e.target.value)} />
-                            </div>
+                        <div className="">
+                            <label htmlFor="name_field">Name</label>
+                            <input type="text" id="name_field" className="" value={name} onChange={(e) => setName(e.target.value)} />
+                        </div>
 
-                            <div className="form-group">
-                                <label htmlFor="price_field">Email</label>
-                                <input type="text" id="price_field" className="form-control" value={email} onChange={(e) => setEmail(e.target.value)} />
-                            </div>
+                        <div className="">
+                            <label htmlFor="price_field">Email</label>
+                            <input type="text" id="price_field" className="" value={email} onChange={(e) => setEmail(e.target.value)} />
+                        </div>
 
-                            <div className="form-group">
-                                <label htmlFor="category_field">Role</label>
-                                <select
-                                    disabled={user._id === authUser._id}
-                                    className="form-control" id="category_field" onChange={(e) => setRole(e.target.value)} value={role}>
-                                    <option value='user'>User</option>
-                                    <option value='admin'>Admin</option>
-                                </select>
-                            </div>
+                        <div className="">
+                            <label htmlFor="category_field">Role</label>
+                            <select
+                                disabled={user._id === authUser._id}
+                                className="" id="category_field" onChange={(e) => setRole(e.target.value)} value={role}>
+                                <option value='user'>User</option>
+                                <option value='admin'>Admin</option>
+                            </select>
+                        </div>
 
-                            <button id="login_button"
-                                disabled={loading}
-                                type="submit" className="btn btn-block py-3">
-                                UPDATE
-                            </button>
+                        <Button id="login_button"
+                            disabled={loading}
+                            variant='contained'
+                            type="submit" className="mt-5">
+                            UPDATE
+                        </Button>
 
-                        </form>
-                    </div>
-                </>
+                    </form>
+                </div>
 
             </div>
         </div>

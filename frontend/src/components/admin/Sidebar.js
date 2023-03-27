@@ -11,12 +11,9 @@ export default function Sidebar() {
                 <div>
                     <Link to="/admin/dashboard">Dashboard</Link>
                 </div>
-                <div>
-                    <Link to="/admin/products">Products</Link>
-                </div>
 
                 <div>
-                    <Link to="/admin/products/create">Create Product</Link>
+                    <Link to="/admin/products">Products</Link>
                 </div>
 
                 <div>
@@ -29,6 +26,10 @@ export default function Sidebar() {
 
                 <div>
                     <Link to="/admin/reviews">Reviews</Link>
+                </div>
+
+                <div>
+                    <Link to="/admin/products/create">Create Product</Link>
                 </div>
             </Box>
         </div>
