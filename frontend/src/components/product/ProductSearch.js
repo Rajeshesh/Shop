@@ -137,7 +137,7 @@ export default function ProductSearch() {
                         </Stack>
                     </section>
                     {productsCount > 0 && productsCount > resPerPage ?
-                        <div className="d-flex justify-content-center mt-5">
+                        <div className=" mt-5 pagination">
                             <Pagination
                                 activePage={currentPage}
                                 onChange={setCurrentPageNo}

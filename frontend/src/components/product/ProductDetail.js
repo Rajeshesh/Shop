@@ -4,14 +4,14 @@ import { useParams } from "react-router-dom";
 import { createReview, getProduct } from "../../actions/productActions"
 import { clearReviewSubmitted, clearError, clearProduct } from "../../slices/productSlice"
 import Loader from '../layouts/Loader';
-import { Carousel,Modal } from 'react-bootstrap';
+import { Carousel, Modal } from 'react-bootstrap';
 import MetaData from "../layouts/MetaData";
 import { addCartItem } from "../../actions/cartActions";
 import { toast } from "react-toastify";
 import ProductReview from "./ProductReview";
 
 import { Button, IconButton } from '@mui/material'
-import { KeyboardDoubleArrowLeft, KeyboardDoubleArrowRight } from '@mui/icons-material'
+import { KeyboardDoubleArrowLeft, KeyboardDoubleArrowRight, Star } from '@mui/icons-material'
 
 
 export default function ProductDetail() {
@@ -147,7 +147,7 @@ export default function ProductDetail() {
                                 <Button variant="outlined" className="mt-5">Login to post Review</Button>
                             }
 
-                           
+
 
                         </div>
 
@@ -155,35 +155,35 @@ export default function ProductDetail() {
                     {
                         product.reviews && product.reviews.length > 0 ? <ProductReview reviews={product.reviews} /> : null
                     }
-                     <div className="row mt-2 mb-5">
-                                <div className="rating w-50">
-                                    <Modal show={show} onHide={handleClose}>
-                                        <Modal.Header closeButton>
-                                            <Modal.Title>Submit Review</Modal.Title>
-                                        </Modal.Header>
-                                        <Modal.Body>
-                                            <ul className="stars" >
-                                                {
-                                                    [1, 2, 3, 4, 5].map((star, i) => (
-                                                        <li key={i}
-                                                            value={star}
-                                                            onClick={() => setRating(star)}
-                                                            className={`star ${star <= rating ? 'orange' : ''}`}
-                                                            onMouseOver={e => e.target.classList.add('yellow')}
-                                                            onMouseOut={e => e.target.classList.remove('yellow')}
-                                                        ><i className="fa fa-star"></i></li>
-                                                    ))
-                                                }
-                                            </ul>
+                    <div className=" mt-2 mb-5">
+                        <div className="rating ">
+                            <Modal show={show} onHide={handleClose}>
+                                <Modal.Header closeButton>
+                                    <Modal.Title>Submit Review</Modal.Title>
+                                </Modal.Header>
+                                <Modal.Body>
+                                    <ul className="stars mb-0" >
+                                        {
+                                            [1, 2, 3, 4, 5].map((star, i) => (
+                                                <li key={i}
+                                                    value={star}
+                                                    onClick={() => setRating(star)}
+                                                    className={`star ${star <= rating ? 'orange' : ''}`}
+                                                    onMouseOver={e => e.target.classList.add('yellow')}
+                                                    onMouseOut={e => e.target.classList.remove('yellow')}
+                                                ><Star /></li>
+                                            ))
+                                        }
+                                    </ul>
 
-                                            <textarea name="review"
-                                                onChange={(e) => setComment(e.target.value)} id="review" className="form-control mt-3"></textarea>
-                                            <button disabled={loading} onClick={reviewHandlar} className="btn my-3 float-rigth review-btn px-4 text-white" aria-label="Close">Submit</button>
-                                        </Modal.Body>
-                                    </Modal>
+                                    <textarea name="review"
+                                        onChange={(e) => setComment(e.target.value)} id="review" className="mt-3"></textarea>
+                                    <Button disabled={loading} onClick={reviewHandlar} className="mt-3" variant="contained" aria-label="Close">Submit</Button>
+                                </Modal.Body>
+                            </Modal>
 
-                                </div>
-                            </div>
+                        </div>
+                    </div>
                 </Fragment>}
         </Fragment >
     )

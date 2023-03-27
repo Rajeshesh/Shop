@@ -94,25 +94,21 @@ export default function UpdateProfile() {
                             />
                         </div>
 
-                        <div className=''>
+                        <div className='RAvatar'>
                             <label htmlFor='avatar_upload'>Avatar</label>
-                            <div className='d-flex align-items-center'>
+                            <div className=''>
                                 <div>
-                                    <figure className='avatar mr-3 item-rtl'>
-                                        <Avatar src={avatarPreview} />
-                                    </figure>
+                                    <Avatar src={avatarPreview} />
                                 </div>
-                                <div className='custom-file'>
+                                <div className=''>
                                     <input
                                         type='file'
                                         onChange={onChangeAvatar}
                                         name='avatar'
-                                        className='custom-file-input'
+                                        className='c'
                                         id='customFile'
                                     />
-                                    <label className='custom-file-label' htmlFor='customFile'>
-                                        Choose Avatar
-                                    </label>
+                                    
                                 </div>
                             </div>
                         </div>
