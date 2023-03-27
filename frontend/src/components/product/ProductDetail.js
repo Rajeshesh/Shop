@@ -11,7 +11,7 @@ import { toast } from "react-toastify";
 import ProductReview from "./ProductReview";
 
 import { Button, IconButton } from '@mui/material'
-import { KeyboardDoubleArrowLeft, KeyboardDoubleArrowRight } from '@mui/icons-material'
+import { KeyboardDoubleArrowLeft, KeyboardDoubleArrowRight, Star } from '@mui/icons-material'
 
 
 export default function ProductDetail() {
@@ -156,14 +156,23 @@ export default function ProductDetail() {
                     {
                         product.reviews && product.reviews.length > 0 ? <ProductReview reviews={product.reviews} /> : null
                     }
+<<<<<<< HEAD
                     <div className="row mt-2 mb-5">
                         <div className="rating w-50">
+=======
+                    <div className=" mt-2 mb-5">
+                        <div className="rating ">
+>>>>>>> main
                             <Modal show={show} onHide={handleClose}>
                                 <Modal.Header closeButton>
                                     <Modal.Title>Submit Review</Modal.Title>
                                 </Modal.Header>
                                 <Modal.Body>
+<<<<<<< HEAD
                                     <ul className="stars" >
+=======
+                                    <ul className="stars mb-0" >
+>>>>>>> main
                                         {
                                             [1, 2, 3, 4, 5].map((star, i) => (
                                                 <li key={i}
@@ -172,14 +181,23 @@ export default function ProductDetail() {
                                                     className={`star ${star <= rating ? 'orange' : ''}`}
                                                     onMouseOver={e => e.target.classList.add('yellow')}
                                                     onMouseOut={e => e.target.classList.remove('yellow')}
+<<<<<<< HEAD
                                                 ><i className="fa fa-star"></i></li>
+=======
+                                                ><Star /></li>
+>>>>>>> main
                                             ))
                                         }
                                     </ul>
 
                                     <textarea name="review"
+<<<<<<< HEAD
                                         onChange={(e) => setComment(e.target.value)} id="review" className="form-control mt-3"></textarea>
                                     <button disabled={loading} onClick={reviewHandlar} className="btn my-3 float-rigth review-btn px-4 text-white" aria-label="Close">Submit</button>
+=======
+                                        onChange={(e) => setComment(e.target.value)} id="review" className="mt-3"></textarea>
+                                    <Button disabled={loading} onClick={reviewHandlar} className="mt-3" variant="contained" aria-label="Close">Submit</Button>
+>>>>>>> main
                                 </Modal.Body>
                             </Modal>
 

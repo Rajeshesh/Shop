@@ -9,7 +9,8 @@ export default function Product({ product }) {
                         className='product__image'
                         src={product.images[0].image}
                         alt={product.name}
-                        width='100%'
+                        width='100'
+                        height='100'
 
                     />
                 </Link>
