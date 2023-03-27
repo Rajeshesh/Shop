@@ -8,7 +8,8 @@ import Loader from '../layouts/Loader'
 import { MDBDataTable } from 'mdbreact'
 import { toast } from "react-toastify"
 import { deleteUser, getUsers } from "../../actions/userActions"
-import { Box } from "@mui/material"
+import { Box, IconButton } from "@mui/material"
+import { DeleteOutline, Edit } from "@mui/icons-material"
 
 export default function UserList() {
     const { users = [], loading = true, error, isUserDeleted } = useSelector(state => state.userState)
@@ -52,8 +53,10 @@ export default function UserList() {
                 role: user.role,
                 actions: (
                     <Fragment>
-                        <Link className="btn btn-primary" to={`/admin/user/${user._id}`}><i className="fa fa-pencil"></i></Link>
-                        <Button onClick={(e) => deleteHandler(e, user._id)} className="btn btn-danger py-1 px-2 ml-2"><i className="fa fa-trash"></i></Button>
+                        <IconButton color="primary">
+                            <Link className="" to={`/admin/user/${user._id}`}><Edit /></Link>
+                        </IconButton>
+                        <IconButton color="secondary" aria-label="delete" onClick={(e) => deleteHandler(e, user._id)} className=""><DeleteOutline /></IconButton>
                     </Fragment>)
             })
         })
@@ -94,14 +97,14 @@ export default function UserList() {
 
                 <Sidebar />
             </Box>
-            <div className="col-12 col-md-10">
-                <h1 className="my-4">User List</h1>
+            <div className="userList">
+                <h1 className="mt-4 mb-4">User List</h1>
                 <>
                     {loading ? <Loader /> : <MDBDataTable data={setUsers()}
                         bordered
                         striped
                         hover
-                        className="px-3 OTable" />}
+                        className="pl-6 pr-6 OTable" />}
                 </>
 
             </div>

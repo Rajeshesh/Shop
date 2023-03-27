@@ -1,4 +1,3 @@
-
 .OTable {
   overflow: auto;
 
@@ -7,17 +6,26 @@
   }
 }
 
-.orderDetail{
+.orderDetail {
   margin: 0 auto;
-  max-width: 800px;
+  max-width: 600px;
 }
+
 .orderItem {
   display: flex;
-  flex-flow: row ;
-  justify-content: space-between;
+  flex-flow: row;
   max-width: 650px;
-  & a{
+  align-content: center;
+
+  & :last-child {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+
+  }
+
+  & a {
     text-decoration: none;
   }
 }
-

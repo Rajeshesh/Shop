@@ -156,7 +156,7 @@ export default function Payment() {
                     </div>
 
 
-                    <Button variant="contained" type="submit" className=" mt-5">
+                    <Button variant="contained" id="pay_btn" type="submit" className=" mt-5">
                         Pay={`$${orderInfo && orderInfo.totalPrice}`}
                     </Button>
 

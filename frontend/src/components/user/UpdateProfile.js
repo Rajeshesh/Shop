@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { clearError, updateProfile } from "../../actions/userActions";
 import { toast } from "react-toastify";
 import { clearUpdateProfile } from "../../slices/authSlice";
+import { Avatar, Button } from "@mui/material";
 
 export default function UpdateProfile() {
     const { loading, error, user, isUpdated } = useSelector(state => state.authState)
@@ -64,45 +65,41 @@ export default function UpdateProfile() {
 
     return (
         <Fragment>
-            <div className="row wrapper">
-                <div className="col-10 col-lg-5">
-                    <form onSubmit={submitHandler} className="shadow-lg" encType='multipart/form-data'>
+            <div className="">
+                <div className="input">
+                    <form onSubmit={submitHandler} className="input__form" encType='multipart/form-data'>
                         <h1 className="mt-2 mb-5">Update Profile</h1>
 
-                        <div className="form-group">
+                        <div className="">
                             <label htmlFor="email_field">Name</label>
                             <input
                                 type="text"
                                 id="name_field"
-                                className="form-control"
+                                className=""
                                 name='name'
                                 value={name}
                                 onChange={e => setName(e.target.value)}
                             />
                         </div>
 
-                        <div className="form-group">
+                        <div className="">
                             <label htmlFor="email_field">Email</label>
                             <input
                                 type="text"
                                 id="email_field"
-                                className="form-control"
+                                className=""
                                 name='email'
                                 value={email}
                                 onChange={e => setEmail(e.target.value)}
                             />
                         </div>
 
-                        <div className='form-group'>
+                        <div className=''>
                             <label htmlFor='avatar_upload'>Avatar</label>
                             <div className='d-flex align-items-center'>
                                 <div>
                                     <figure className='avatar mr-3 item-rtl'>
-                                        <img
-                                            src={avatarPreview}
-                                            className='rounded-circle'
-                                            alt='Avatar Preview'
-                                        />
+                                        <Avatar src={avatarPreview} />
                                     </figure>
                                 </div>
                                 <div className='custom-file'>
@@ -120,7 +117,7 @@ export default function UpdateProfile() {
                             </div>
                         </div>
 
-                        <button disabled={loading} type="submit" className="btn update-btn btn-block mt-4 mb-3" >Update</button>
+                        <Button variant="contained" disabled={loading} type="submit" className="mt-4 mb-3" >Update</Button>
                     </form>
                 </div>
             </div>

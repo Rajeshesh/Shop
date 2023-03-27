@@ -62,7 +62,9 @@ export default function Header() {
               </Menu>
             </div>
           ) :
-            <Link className="btn" to={"/login"} id="login_btn">Login</Link>
+          <Button variant='contained'>
+            <Link  to={"/login"} id="login_btn">Login</Link>
+          </Button>
           }
           <Link id="cart" to='/cart' className="ml-3">
             <Badge badgeContent={cartItems.length}><ShoppingCart /></Badge>
