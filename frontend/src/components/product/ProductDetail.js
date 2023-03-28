@@ -9,10 +9,23 @@ import MetaData from "../layouts/MetaData";
 import { addCartItem } from "../../actions/cartActions";
 import { toast } from "react-toastify";
 import ProductReview from "./ProductReview";
-
-import { Button, IconButton } from '@mui/material'
+import StarIcon from '@mui/icons-material/Star';
+import { Box, Button, IconButton, Rating } from '@mui/material'
 import { KeyboardDoubleArrowLeft, KeyboardDoubleArrowRight, Star } from '@mui/icons-material'
 
+
+const labels = {
+    0.5: 'Useless',
+    1: 'Useless+',
+    1.5: 'Poor',
+    2: 'Poor+',
+    2.5: 'Ok',
+    3: 'Ok+',
+    3.5: 'Good',
+    4: 'Good+',
+    4.5: 'Excellent',
+    5: 'Excellent+',
+};
 
 export default function ProductDetail() {
     const { loading, product = {}, isReviewSubmitted = false, error } = useSelector((state) => state.productState);
@@ -106,9 +119,22 @@ export default function ProductDetail() {
 
                             <hr />
 
-                            <div className="ratings__outer">
-                                <div className="ratings__inner" style={{ width: `${product.ratings / 5 * 100}%` }}></div>
-                            </div>
+                            <Box
+                                sx={{
+                                    width: 100,
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                }}
+                            >
+                                <Rating
+                                    name="text-feedback"
+                                    value={product.ratings}
+                                    readOnly
+                                    precision={0.5}
+                                    emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
+                                />
+                                <Box sx={{ ml: 2 }}>{labels[product.ratings]}</Box>
+                            </Box>
                             <span id="noOfReviews">({product.numOfReviews} Reviews)</span>
 
                             <hr />

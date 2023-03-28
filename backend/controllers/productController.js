@@ -156,14 +156,13 @@ exports.createReview = catchAsyncError(async (req, res, next) => {
         product.reviews.push(review);
         product.numOfReviews = product.reviews.length;
     }
-    //find the average of the product reviews
+
     product.ratings = product.reviews.reduce((acc, review) => {
         return review.rating + acc;
     }, 0) / product.reviews.length;
     product.ratings = isNaN(product.ratings) ? 0 : product.ratings;
 
     await product.save({ validateBeforeSave: false });
-
     res.status(200).json({
         success: true
     })

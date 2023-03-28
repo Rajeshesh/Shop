@@ -1,6 +1,12 @@
 import { Link } from 'react-router-dom';
+import Box from '@mui/material/Box';
+import Rating from '@mui/material/Rating';
+import StarIcon from '@mui/icons-material/Star';
+
 
 export default function Product({ product }) {
+
+
     return (
         <div className={`product  m-1 mt-1 p-3`}>
             <div >
@@ -19,10 +25,22 @@ export default function Product({ product }) {
                         <Link to={`/product/${product._id}`}>{product.name}</Link>
                     </h5>
                     <p className="product__text">${product.price}</p>
-                    <div className="ratings ">
-                        <div className="ratings__outer">
-                            <div className="ratings__inner" style={{ width: `${product.ratings / 5 * 100}%` }}></div>
-                        </div>
+                    <div className=" ">
+                        <Box
+                            sx={{
+                                width: 100,
+                                display: 'flex',
+                                alignItems: 'center',
+                            }}
+                        >
+                            <Rating
+                                name="text-feedback"
+                                value={product.ratings}
+                                readOnly
+                                precision={0.5}
+                                emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
+                            />
+                        </Box>
                         <span id="noOfReviews">({product.numOfReviews} Reviews)</span>
                     </div>
 

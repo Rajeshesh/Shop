@@ -62,8 +62,8 @@ export default function Header() {
               </Menu>
             </div>
           ) :
-          <Button variant='contained'>
-            <Link  to={"/login"} id="login_btn">Login</Link>
+          <Button variant='contained' color='secondary'>
+            <Link  to={"/login"} >Login</Link>
           </Button>
           }
           <Link id="cart" to='/cart' className="ml-3">
@@ -71,8 +71,8 @@ export default function Header() {
           </Link>
         </div>
       </Box>
-      <Box sx={{ display: { xs: 'flex', sm: 'none' }, justifyContent: 'center', paddingLeft: '8%', paddingBottom: '1%' }}>
-        <Search />
+      <Box sx={{ display: { xs: 'flex', sm: 'none' }, justifyContent: 'center', paddingBottom: '1%' }}>
+        <Search  />
       </Box>
 
     </AppBar>

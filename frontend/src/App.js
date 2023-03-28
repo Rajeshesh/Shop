@@ -24,7 +24,6 @@ import UpdatePassword from './components/user/UpdatePassword';
 import ForgotPassword from './components/user/ForgotPassword';
 import ResetPassword from './components/user/ResetPassword';
 import GuestRoute from './components/route/GuestRoute';
-import { Card } from 'react-bootstrap';
 import ConfirmOrder from './components/cart/ConfirmOrder';
 import Payment from './components/cart/Payment';
 import axios from 'axios';

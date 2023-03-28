@@ -29,11 +29,11 @@ export default function Search() {
 
     return (
         <form onSubmit={searchHandler}>
-            <div className="input-group">
+            <div className="search">
                 <input
                     type="text"
                     id="search_field"
-                    className="form-control"
+                    className=""
                     placeholder="Enter Product Name ..."
                     onChange={(e) => { setKeyword(e.target.value) }}
                     value={keyword}
