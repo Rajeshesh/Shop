@@ -1,5 +1,4 @@
 import './sass/main.scss'
-import './App.css';
 import Home from './components/Home';
 import Footer from './components/layouts/Footer';
 import Header from './components/layouts/Header';
@@ -41,6 +40,7 @@ import UpdateOrder from './components/admin/UpdateOrder';
 import UserList from './components/admin/UserList';
 import UpdateUser from './components/admin/UpdateUser';
 import ReviewList from './components/admin/ReviewList';
+import { Box } from '@mui/material';
 
 function App() {
 
@@ -57,7 +57,7 @@ function App() {
 
   return (
     <Router>
-      <div className="App">
+      <Box className="App" >
         <HelmetProvider>
           <Header />
           <div className='main'>
@@ -96,7 +96,7 @@ function App() {
           </Routes>
           <Footer />
         </HelmetProvider>
-      </div>
+      </Box>
     </Router>
   );
 }

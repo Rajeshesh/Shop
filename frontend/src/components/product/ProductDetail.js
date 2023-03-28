@@ -199,7 +199,7 @@ export default function ProductDetail() {
                                                 <li key={i}
                                                     value={star}
                                                     onClick={() => setRating(star)}
-                                                    className={`star ${star <= rating ? 'orange' : ''}`}
+                                                    className={`star ${star <= rating ? 'orange' : ''} pl-5px`}
                                                     onMouseOver={e => e.target.classList.add('yellow')}
                                                     onMouseOut={e => e.target.classList.remove('yellow')}
                                                 ><Star /></li>

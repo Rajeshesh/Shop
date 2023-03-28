@@ -14,10 +14,10 @@ export default function ProductReview({ reviews }) {
             {reviews && reviews.map((review, i) => (
                 <div key={i} className="review mt-2 mb-2">
                     <Stack spacing={1}>
-                        <Rating name="size-medium" defaultValue={review.rating} />
+                        <Rating name="size-medium" defaultValue={review.rating} readOnly/>
                     </Stack>
-                    <p className="review_user">by {review.user.name || 'Not Available'}</p>
-                    <p className="review_comment">{review.comment}</p>
+                    <p className="review__user">by {review.user.name || 'Not Available'}</p>
+                    <p className="review__comment">{review.comment}</p>
 
                     <hr />
                 </div>

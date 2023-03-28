@@ -163,3 +163,46 @@
     border: none;
     padding: 0.5rem 2rem;
 }
+
+html,
+body {
+    font-family: 'Amazon Ember';
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+a[data-toggle='collapse'] {
+    position: relative;
+}
+
+.redColor {
+    color: red;
+}
+
+.greenColor {
+    color: green;
+}
+
+.dropdown-toggle::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+
+.orange {
+    color: #fa9c23;
+}
+
+.yellow {
+    color: #fdcc0d;
+}

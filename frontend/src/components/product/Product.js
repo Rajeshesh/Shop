@@ -10,7 +10,7 @@ export default function Product({ product }) {
     return (
         <div className={`product  m-1 mt-1 p-3`}>
             <div >
-                <Link to={`/product/${product._id}`} >
+                <Link to={`/product/${product._id}`}  className='product__link' >
                     <img
                         className='product__image'
                         src={product.images[0].image}

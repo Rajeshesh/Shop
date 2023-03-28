@@ -1,20 +1,22 @@
 /* Product Details Page */
-.modal-dialog{
+.modal-dialog {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 80vh;
     max-width: 400px;
-    & textarea{
+
+    & textarea {
         width: 100%;
         height: 6rem;
     }
-    & ul{
+
+    & ul {
         height: 3rem;
     }
 }
 
-.pagination{
+.pagination {
     display: flex;
     justify-content: center;
 }
@@ -26,12 +28,18 @@
     grid-auto-rows: repeat(auto-fit, minmax(360px, 1fr));
     grid-auto-flow: row;
 
-    .checkout{
+    .checkout {
         display: flex;
         justify-content: center;
     }
+
     .product {
         border: 1px solid rgb(197, 183, 183);
+
+        &__link {
+            display: flex;
+            justify-content: center;
+        }
 
         &__image {
             object-fit: contain;
@@ -45,8 +53,6 @@
         }
 
         &__title a {
-            color: #2e2e2e;
-
             &:hover {
                 color: #fa9c23;
                 text-decoration: none;
@@ -58,21 +64,21 @@
         }
     }
 }
-.product img{
-object-fit: contain;
+
+.product img {
+    object-fit: contain;
 }
 
-.col3 {
-    position: relative;
-    max-width: 230px;
-    width: 65%;
-    padding-right: 15px;
+.review {
+    &__user {
+        font-size: 0.8rem;
+        color: grey;
+    }
+    &__comment{
+        font-size: 1.2rem;
+    }
 }
 
-.review_user {
-    font-size: 0.8rem;
-    color: grey;
-}
 
 #product_id {
     color: grey;
@@ -86,7 +92,7 @@ object-fit: contain;
 
 .stockCounter {
     min-width: 100px;
-    
+
     & input {
         border: none;
         width: 1rem;
@@ -109,27 +115,11 @@ object-fit: contain;
     height: 100px;
     display: flex;
     align-items: center;
+    justify-content: center;
     padding-left: 0;
-}
-
-.star {
-    display: inline;
-    list-style: none;
-    font-size: 3rem;
-    padding-left: 0.9rem;
-    color: #e3e3e3;
-}
-
-.star:first-child {
-    padding-left: 0;
-}
-
-.orange {
-    color: #fa9c23;
-}
-
-.yellow {
-    color: #fdcc0d;
+    & li::marker{
+        display: node;
+    }
 }
 
 // ProductDetail
