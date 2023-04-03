@@ -32,7 +32,7 @@ export default function Header() {
           <Typography variant='h4' color='secondary' component='p' >Shop</Typography>
         </Link>
 
-        <Box sx={{ display: { xs: 'none', sm: 'block' }, maxWidth: '700px', flexGrow: 1 }}>
+        <Box sx={{ display: { xs: 'none', sm: 'block' }, maxWidth: '700px', flexGrow: 1 }} className='ml-3 mt-1' >
           <Search />
         </Box>
 
@@ -62,11 +62,11 @@ export default function Header() {
               </Menu>
             </div>
           ) :
-          <Button variant='contained' color='secondary'>
+          <Button variant='contained' color='secondary' className='ml-3'>
             <Link  to={"/login"} >Login</Link>
           </Button>
           }
-          <Link  to='/cart' className="ml-3 ">
+          <Link  to='/cart' className="ml-3 mr-1 ">
             <Badge badgeContent={cartItems.length} color='secondary'><ShoppingCart  color='warning' /></Badge>
           </Link>
         </div>

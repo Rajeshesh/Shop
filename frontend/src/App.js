@@ -6,14 +6,14 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { HelmetProvider } from 'react-helmet-async'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import ProductDetail from './components/product/ProductDetail';
+// import ProductDetail from './components/product/ProductDetail';
 import ProductSearch from './components/product/ProductSearch';
 import Login from './components/user/Login';
 import Register from './components/user/Register';
 import Shipping from './components/cart/Shipping';
 import CartC from './components/cart/Cart'
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, lazy, Suspense } from 'react';
 import store from './store'
 import { loadUser } from './actions/userActions';
 import Profile from './components/user/Profile';
@@ -42,6 +42,9 @@ import UpdateUser from './components/admin/UpdateUser';
 import ReviewList from './components/admin/ReviewList';
 import { Box } from '@mui/material';
 
+//lazy route components
+const ProductDetail=lazy(()=>import('./components/product/ProductDetail'))
+
 function App() {
 
   const [stripeApiKey, setStripeApiKey] = useState()
@@ -65,7 +68,7 @@ function App() {
             <Routes>
               <Route path='/' element={<Home />} />
               <Route path='/search/:keyword' element={<ProductSearch />} />
-              <Route path='/product/:id' element={<ProductDetail />} />
+
               <Route path='/login' element={<GuestRoute><Login /></GuestRoute>} />
               <Route path='/register' element={<GuestRoute><Register /></GuestRoute>} />
               <Route path='/myprofile' element={<ProtectedRoute><Profile /></ProtectedRoute>} />
@@ -81,6 +84,11 @@ function App() {
               <Route path='/order/:id' element={<ProtectedRoute><OrderDetail /></ProtectedRoute>} />
               {stripeApiKey && <Route path='/payment' element={<ProtectedRoute><Elements stripe={loadStripe(stripeApiKey)}><Payment /></Elements></ProtectedRoute>} />}
             </Routes>
+            <Suspense fallback={<div>...</div>}>
+              <Routes>
+                <Route path='/product/:id' element={<ProductDetail />} />
+              </Routes>
+            </Suspense>
           </div>
           <Routes>
             <Route path='/admin/dashboard' element={<ProtectedRoute isAdmin={true}><Dashboard /></ProtectedRoute>} />
