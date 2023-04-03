@@ -1,9 +1,10 @@
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
+import { memo } from 'react';
 
 
 
-export default function ProductReview({ reviews }) {
+const ProductReview = ({ reviews }) => {
 
     return (
         <div className="">
@@ -21,6 +22,7 @@ export default function ProductReview({ reviews }) {
                 </div>
             ))}
         </div>
-
     )
 }
+
+export default memo(ProductReview)

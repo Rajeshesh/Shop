@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react"
+import { Fragment, useEffect, useState, memo, useCallback } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams, Link } from "react-router-dom";
 import { createReview, getProduct } from "../../actions/productActions"
@@ -27,39 +27,40 @@ const labels = {
     5: 'Excellent+',
 };
 
-export const CarouselReUse = ({ product, h, w }) =>
+export const CarouselReUse = memo(({ product, h, w }) =>
     <Carousel pause="hover">
         {product.images && product.images.map(image =>
             <Carousel.Item key={image._id}>
                 <img className="carousel__imag" src={image.image} alt={product.name} height={h} width={w} />
             </Carousel.Item>
         )}
-    </Carousel>
+    </Carousel>)
 
+const BasicDetails = memo(({ product }) =>
+    <>
+        <h3>{product.name}</h3>
+        <Box sx={{ width: 100, display: 'flex', alignItems: 'center', }} >
+            <Rating
+                name="text-feedback"
+                value={product.ratings}
+                readOnly
+                precision={0.5}
+                emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
+            />
+            <Box sx={{ ml: 2 }}>{labels[product.ratings]}</Box>
+        </Box>
 
+        <span id="noOfReviews">({product.numOfReviews} Reviews)</span>
+        <p id="product_price">${product.price}</p>
+        <p>Status: <span className={product.stock > 0 ? 'greenColor' : 'redColor'} >{product.stock > 0 ? 'In Stock' : 'Out of Stock'}</span></p>
+        <h4 className="mt-2">Description:</h4>
+        <p>{product.description}</p>
+        <hr />
+        <p id="product_seller mb-1">Sold by: <strong>{product.seller}</strong></p>
+    </>)
 
-const BasicDetails = ({ product }) => <>
-    <h3>{product.name}</h3>
-    <Box sx={{ width: 100, display: 'flex', alignItems: 'center', }} >
-        <Rating
-            name="text-feedback"
-            value={product.ratings}
-            readOnly
-            precision={0.5}
-            emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
-        />
-        <Box sx={{ ml: 2 }}>{labels[product.ratings]}</Box>
-    </Box>
-    <span id="noOfReviews">({product.numOfReviews} Reviews)</span>
-    <p id="product_price">${product.price}</p>
-    <p>Status: <span className={product.stock > 0 ? 'greenColor' : 'redColor'} >{product.stock > 0 ? 'In Stock' : 'Out of Stock'}</span></p>
-    <h4 className="mt-2">Description:</h4>
-    <p>{product.description}</p>
-    <hr />
-    <p id="product_seller mb-1">Sold by: <strong>{product.seller}</strong></p>
-</>
+const AddToCart = memo(({ decreaseQty, quantity, increaseQty, product, clickCallBack }) => <>
 
-const AddToCart = ({ decreaseQty, quantity, increaseQty, product, clickCallBack }) => <>
     <div className="stockCounter ">
         <IconButton className="" onClick={decreaseQty}><KeyboardDoubleArrowLeft /></IconButton>
         <input type="number" className="count" value={quantity} readOnly />
@@ -68,10 +69,9 @@ const AddToCart = ({ decreaseQty, quantity, increaseQty, product, clickCallBack 
     <Button type="button" variant="contained" disabled={product.stock === 0 ? true : false} className="ml-4"
         onClick={clickCallBack}>Add to Cart
     </Button>
-</>
+</>)
 
-
-const ModalReUse = ({ show, handleClose, setRating, rating, reviewHandlar, loading, setComment }) =>
+const ModalReUse = memo(({ show, handleClose, setRatingUCF, rating, reviewHandlar, loading, setCommentUCF }) =>
     <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
             <Modal.Title>Submit Review</Modal.Title>
@@ -82,7 +82,7 @@ const ModalReUse = ({ show, handleClose, setRating, rating, reviewHandlar, loadi
                     [1, 2, 3, 4, 5].map((star, i) => (
                         <li key={i}
                             value={star}
-                            onClick={() => setRating(star)}
+                            onClick={() => setRatingUCF(star)}
                             className={`star ${star <= rating ? 'orange' : ''} pl-5px`}
                             onMouseOver={e => e.target.classList.add('yellow')}
                             onMouseOut={e => e.target.classList.remove('yellow')}
@@ -90,12 +90,11 @@ const ModalReUse = ({ show, handleClose, setRating, rating, reviewHandlar, loadi
                     ))
                 }
             </ul>
-
             <textarea name="review"
-                onChange={(e) => setComment(e.target.value)} id="review" className="mt-3"></textarea>
+                onChange={(e) => setCommentUCF(e.target.value)} id="review" className="mt-3"></textarea>
             <Button disabled={loading} onClick={reviewHandlar} className="mt-3" variant="contained" aria-label="Close">Submit</Button>
         </Modal.Body>
-    </Modal>
+    </Modal>)
 
 
 
@@ -105,37 +104,38 @@ export default function ProductDetail() {
     const dispatch = useDispatch();
     const { id } = useParams()
     const [quantity, setQuantity] = useState(1)
+
     const [show, setShow] = useState(false);
+    const [rating, setRating] = useState(1)
+    const [comment, setComment] = useState('')
 
-
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const handleClose = useCallback(() => setShow(false), [show]);
+    const handleShow = useCallback(() => setShow(true), [show]);
+    const setRatingUCF = useCallback((n) => setRating(n), [rating]);
+    const setCommentUCF = useCallback((v) => setComment(v), [comment]);
 
     const increaseQty = () => {
         const count = document.querySelector(".count")
-
         if (product.stock === 0 || count.valueAsNumber >= product.stock) return
         const qty = count.valueAsNumber + 1
         setQuantity(qty)
     }
+
     const decreaseQty = () => {
         const count = document.querySelector(".count")
-
         if (count.valueAsNumber === 1) return
         const qty = count.valueAsNumber - 1
         setQuantity(qty)
     }
 
-    const [rating, setRating] = useState(1)
-    const [comment, setComment] = useState('')
-
-    const reviewHandlar = () => {
+    const reviewHandlar = useCallback(() => {
         const formData = new FormData()
         formData.append("rating", rating)
         formData.append("comment", comment)
         formData.append("productId", id)
         dispatch(createReview(formData))
-    }
+    }, [rating, comment])
+
     useEffect(() => {
         if (isReviewSubmitted) {
             handleClose()
@@ -143,7 +143,6 @@ export default function ProductDetail() {
                 type: 'success',
                 position: toast.POSITION.BOTTOM_CENTER,
                 onOpen: () => dispatch(clearReviewSubmitted())
-
             })
         }
         if (error) {
@@ -151,11 +150,9 @@ export default function ProductDetail() {
                 type: 'error',
                 position: toast.POSITION.BOTTOM_CENTER,
                 onOpen: () => dispatch(clearError())
-            }
-            );
+            });
             return;
         }
-
         if (!product._id || isReviewSubmitted) {
             dispatch(getProduct(id))
         }
@@ -163,20 +160,17 @@ export default function ProductDetail() {
         return () => {
             dispatch(clearProduct())
         }
-
-
     }, [dispatch, id, isReviewSubmitted, error])
 
     const modelObj = {
         show,
         handleClose,
-        setRating,
+        setRatingUCF,
         rating,
         reviewHandlar,
         loading,
-        setComment
+        setCommentUCF
     }
-
 
     return (
         <Fragment>
@@ -190,7 +184,6 @@ export default function ProductDetail() {
                         <div className=" mt-5">
                             <BasicDetails product={product} />
                             <hr />
-
                             <AddToCart decreaseQty={decreaseQty} increaseQty={increaseQty} quantity={quantity} product={product} clickCallBack={() => {
                                 dispatch(addCartItem(product._id, quantity))
                                 toast('Cart Item Added!', {
