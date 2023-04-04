@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 import Pagination from 'react-js-pagination';
 import { useParams } from "react-router-dom";
 import RangeSlider from "./Slider";
-import { Box } from "@mui/material";
+import { Box, Rating } from "@mui/material";
 import { Stack } from "@mui/system";
 
 export default function ProductSearch() {
@@ -51,9 +51,7 @@ export default function ProductSearch() {
             })
         }
         dispatch(getProducts(keyword, priceChanged, category, rating, currentPage))
-    }, [error, dispatch, currentPage, keyword, priceChanged, category, rating])
-    // priceChanged instead of price
-
+    }, [error, currentPage, keyword, priceChanged, category, rating])
 
     return (
         <Fragment>
@@ -64,7 +62,7 @@ export default function ProductSearch() {
                         justifyContent="space-between"
                         alignItems="center">
                         <Box className="m-5">Search Products</Box>
-                        <Box className="m-5" sx={{ display: { xs: 'block', sm: 'none' },border:'none' }} onClick={e => setFilter(v => v ? false : true)}component='button' >Filter</Box>
+                        <Box className="m-5" sx={{ display: { xs: 'block', sm: 'none' }, border: 'none' }} onClick={e => setFilter(v => v ? false : true)} component='button' >Filter</Box>
                     </Stack>
                     <section id="products" >
                         <Stack direction="row" >
@@ -100,37 +98,19 @@ export default function ProductSearch() {
                                     <h4 className="mb-3">Ratings</h4>
                                     <ul className="pl-0">
                                         {[5, 4, 3, 2, 1].map(star =>
-                                            <li
-                                                style={{
-                                                    cursor: "pointer",
-                                                    listStyleType: "none"
-                                                }}
-                                                key={star}
-                                                onClick={() => {
-                                                    setRating(star)
-                                                }}
-                                            >
-                                                <div className="ratings__outer">
-                                                    <div
-                                                        className="ratings__inner"
-                                                        style={{
-                                                            width: `${star * 20}%`
-                                                        }}
-                                                    >
-
-                                                    </div>
-                                                </div>
+                                            <li onClick={() => {
+                                                setRating(star)
+                                            }} >
+                                                <Rating name="half-rating-read" defaultValue={star} precision={1} readOnly />
                                             </li>
-
                                         )}
-
                                     </ul>
                                 </div>
                             </Box>
                             <div >
                                 <div className="products">
                                     {products && products.map(product => (
-                                        <Product  key={product._id} product={product} />
+                                        <Product key={product._id} product={product} />
                                     ))}
                                 </div>
                             </div>

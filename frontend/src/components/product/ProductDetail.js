@@ -77,19 +77,8 @@ const ModalReUse = memo(({ show, handleClose, setRatingUCF, rating, reviewHandla
             <Modal.Title>Submit Review</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-            <ul className="stars mb-0" >
-                {
-                    [1, 2, 3, 4, 5].map((star, i) => (
-                        <li key={i}
-                            value={star}
-                            onClick={() => setRatingUCF(star)}
-                            className={`star ${star <= rating ? 'orange' : ''} pl-5px`}
-                            onMouseOver={e => e.target.classList.add('yellow')}
-                            onMouseOut={e => e.target.classList.remove('yellow')}
-                        ><Star /></li>
-                    ))
-                }
-            </ul>
+            <Rating name="half-rating" defaultValue={3} precision={1}
+                onClick={(e) => setRatingUCF(e.target.value)} />
             <textarea name="review"
                 onChange={(e) => setCommentUCF(e.target.value)} id="review" className="mt-3"></textarea>
             <Button disabled={loading} onClick={reviewHandlar} className="mt-3" variant="contained" aria-label="Close">Submit</Button>
@@ -160,7 +149,7 @@ export default function ProductDetail() {
         return () => {
             dispatch(clearProduct())
         }
-    }, [ id, isReviewSubmitted, error])
+    }, [id, isReviewSubmitted, error])
 
     const modelObj = {
         show,
