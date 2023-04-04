@@ -95,7 +95,7 @@ export default function ProductDetail() {
     const [quantity, setQuantity] = useState(1)
 
     const [show, setShow] = useState(false);
-    const [rating, setRating] = useState(1)
+    const [rating, setRating] = useState(3)
     const [comment, setComment] = useState('')
 
     const handleClose = useCallback(() => setShow(false), [show]);
@@ -122,6 +122,8 @@ export default function ProductDetail() {
         formData.append("rating", rating)
         formData.append("comment", comment)
         formData.append("productId", id)
+        formData.append("user", user.name)
+        formData.append("email", user.email)
         dispatch(createReview(formData))
     }, [rating, comment])   //can use like click variable, if the form big
 

@@ -15,7 +15,7 @@ const ProductReview = ({ reviews }) => {
                     <Stack spacing={1}>
                         <Rating name="size-medium" defaultValue={review.rating} readOnly />
                     </Stack>
-                    <p className="review__user">by {review.user.name || 'Not Available'}</p>
+                    <p className="review__user">by {review.user || 'Not Available'}</p>
                     <p className="review__comment">{review.comment}</p>
 
                     <hr />

@@ -127,10 +127,11 @@ exports.deleteProduct = catchAsyncError(async (req, res, next) => {
 
 //Create Review - api/v1/review
 exports.createReview = catchAsyncError(async (req, res, next) => {
-    const { productId, rating, comment } = req.body;
+    const {user, email, productId, rating, comment } = req.body;
 
     const review = {
-        user: req.user.id,
+        user,
+        email,
         rating,
         comment
     }
@@ -147,6 +148,8 @@ exports.createReview = catchAsyncError(async (req, res, next) => {
             if (review.user.toString() == req.user.id.toString()) {
                 review.comment = comment
                 review.rating = rating
+                review.user = user
+                review.email = email
             }
 
         })
