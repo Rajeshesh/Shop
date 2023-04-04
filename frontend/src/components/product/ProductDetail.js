@@ -123,7 +123,7 @@ export default function ProductDetail() {
         formData.append("comment", comment)
         formData.append("productId", id)
         dispatch(createReview(formData))
-    }, [rating, comment])
+    }, [rating, comment])   //can use like click variable, if the form big
 
     useEffect(() => {
         if (isReviewSubmitted) {
