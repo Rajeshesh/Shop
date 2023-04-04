@@ -160,7 +160,7 @@ export default function ProductDetail() {
         return () => {
             dispatch(clearProduct())
         }
-    }, [dispatch, id, isReviewSubmitted, error])
+    }, [ id, isReviewSubmitted, error])
 
     const modelObj = {
         show,

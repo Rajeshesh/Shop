@@ -38,13 +38,13 @@ const productSlice = createSlice({
         createReviewRequest(state, action) {
             return {
                 ...state,
-                loading: true
+                // loading: true
             }
         },
         createReviewSuccess(state, action) {
             return {
                 ...state,
-                loading: false,
+                // loading: false,
                 isReviewSubmitted: true
             }
         },
